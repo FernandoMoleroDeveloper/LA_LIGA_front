@@ -6,7 +6,7 @@
 
   &__box {
     display: flex;
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
     background-color: $background-generic;
     width: 475px;
@@ -14,6 +14,7 @@
     align-items: center;
     justify-content: center;
     margin: 100px auto 0px;
+    box-shadow: 1px 5px 10px $misc-clear;
 
     &-title {
       padding-left: 10px;
@@ -27,23 +28,46 @@
       color: $font-color-text;
     }
 
-    &-input {
-      margin: 10px 0px;
-      width: 100%;
-      height: 40px;
-      border-radius: 5px;
-      border: 1px solid $font-color-border;
-      padding: 0px 10px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    min-width: 100%;
+
+    &-label {
+      color: $font-color-text;
       font-size: 14px;
-      box-sizing: border-box;
+      font-weight: 500;
+      text-align: left;
     }
 
-    &-form {
-      display: flex;
-      flex-direction: column;
-      margin-top: 40px;
-      min-width: 100%;
-      text-align: left;
+    &-input {
+      width: 100%;
+      margin: 10px 0px 20px 0px;
+      border: 1px solid $misc-clear;
+      color: $misc-clear;
+      padding: 15px;
+      font-size: 12px;
+      border-radius: 5px;
+    }
+
+    &-submit {
+      background-color: $misc-accent;
+      height: 44px;
+      color: $font-color-light;
+      font-size: 14px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    &-signin {
+      background-color: $misc-clear;
+      height: 44px;
+      color: $font-color-light;
+      font-size: 14px;
+      border-radius: 5px;
     }
   }
 }
