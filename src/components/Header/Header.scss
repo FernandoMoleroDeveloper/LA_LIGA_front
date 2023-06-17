@@ -1,0 +1,65 @@
+@import "../../styles/utilities/variables";
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  justify-content: center;
+  background-color: $background-player;
+  box-sizing: border-box;
+  height: 60px;
+
+  &__login {
+    text-align: center;
+    font-size: 10px;
+    color: black;
+    text-decoration: none;
+    margin: 18px 24px;
+    padding: 10px 20px;
+    border: 1.5px solid black;
+    vertical-align: middle;
+  }
+
+  &__avatar {
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    margin: 0px 0px 0px 10px;
+  }
+
+  &__home {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: 18px 24px;
+    padding-left: 10px;
+    border-left: 5px solid #0f4314;
+  }
+
+  &__user-info {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 20px;
+  }
+
+  &__dashboard {
+    margin-right: 10px;
+    font-size: 10px;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &__logout {
+    font-size: 10px;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
