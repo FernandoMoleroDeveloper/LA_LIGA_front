@@ -1,0 +1,64 @@
+@import "../../styles/utilities/variables";
+
+.sign-in-page {
+  background-color: $background-player;
+  height: 100vh;
+
+  &__box {
+    display: flex;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: $background-generic;
+    width: 475px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto 50px;
+    box-shadow: 1px 5px 10px $misc-clear;
+
+    &-title {
+      padding-left: 10px;
+      border-left: 5px solid #0f4314;
+    }
+
+    &-message {
+      font-size: 14px;
+      padding: 0px;
+      margin: 0px;
+      color: $font-color-text;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    min-width: 100%;
+
+    &-label {
+      color: $font-color-text;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    &-input {
+      width: 100%;
+      margin: 10px 0px 20px 0px;
+      border: 1px solid $misc-clear;
+      color: $misc-clear;
+      padding: 15px;
+      font-size: 12px;
+      border-radius: 5px;
+    }
+
+    &-submit {
+      background-color: $misc-accent;
+      height: 44px;
+      color: $font-color-light;
+      font-size: 14px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  }
+}
