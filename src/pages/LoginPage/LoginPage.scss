@@ -2,7 +2,7 @@
 
 .login-page {
   background-color: $background-player;
-  height: 100vh;
+  height: 100%;
 
   &__box {
     display: flex;
@@ -13,7 +13,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 100px auto 0px;
+    margin: 100px auto 50px;
     box-shadow: 1px 5px 10px $misc-clear;
 
     &-title {
@@ -27,7 +27,6 @@
       margin: 0px;
       color: $font-color-text;
     }
-
   }
 
   &__form {

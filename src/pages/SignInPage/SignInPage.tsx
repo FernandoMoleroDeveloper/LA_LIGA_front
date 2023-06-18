@@ -1,3 +1,4 @@
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import "./SignInPage.scss";
 
@@ -35,6 +36,7 @@ const SignInPage = (): JSX.Element => {
           </button>
         </form>
       </div>
+      <Footer></Footer>
     </div>
   );
 };
