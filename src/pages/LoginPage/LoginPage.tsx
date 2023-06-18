@@ -1,4 +1,5 @@
 // import { useContext, useRef } from "react";
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import "./LoginPage.scss";
 
@@ -55,16 +56,23 @@ const LoginPage = (): JSX.Element => {
         <h3 className="login-page__box-subtitle">LOGIN</h3>
         <p className="login-page__box-message">Introduce tus credenciales para acceder:</p>
         <form className="login-page__form">
-          <label className="login-page__form-label" htmlFor="email">Email</label>
+          <label className="login-page__form-label" htmlFor="email">
+            Email
+          </label>
           <input className="login-page__form-input" type="text" id="email" placeholder="Introduce tu email" />
 
-          <label className="login-page__form-label" htmlFor="password">Password</label>
+          <label className="login-page__form-label" htmlFor="password">
+            Password
+          </label>
           <input className="login-page__form-input" type="text" id="password" placeholder="Introduce tu password" />
 
-          <button className="login-page__form-submit" type="submit">ACCEDER</button>
+          <button className="login-page__form-submit" type="submit">
+            ACCEDER
+          </button>
           <button className="login-page__form-signin">REGISTRARSE</button>
         </form>
       </div>
+      <Footer></Footer>
     </div>
   );
 };
