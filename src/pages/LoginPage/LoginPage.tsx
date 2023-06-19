@@ -51,26 +51,28 @@ const LoginPage = (): JSX.Element => {
   return (
     <div className="login-page page">
       <Header></Header>
-      <div className="login-page__box">
-        <h2 className="login-page__box-title">BIENVENIDO</h2>
-        <h3 className="login-page__box-subtitle">LOGIN</h3>
-        <p className="login-page__box-message">Introduce tus credenciales para acceder:</p>
-        <form className="login-page__form">
-          <label className="login-page__form-label" htmlFor="email">
-            Email
-          </label>
-          <input className="login-page__form-input" type="text" id="email" placeholder="Introduce tu email" />
+      <div className="login-page__container">
+        <div className="login-page__box">
+          <h2 className="login-page__box-title">BIENVENIDO</h2>
+          <h3 className="login-page__box-subtitle">LOGIN</h3>
+          <p className="login-page__box-message">Introduce tus credenciales para acceder:</p>
+          <form className="login-page__form">
+            <label className="login-page__form-label" htmlFor="email">
+              Email
+            </label>
+            <input className="login-page__form-input" type="text" id="email" placeholder="Introduce tu email" />
 
-          <label className="login-page__form-label" htmlFor="password">
-            Password
-          </label>
-          <input className="login-page__form-input" type="text" id="password" placeholder="Introduce tu password" />
+            <label className="login-page__form-label" htmlFor="password">
+              Password
+            </label>
+            <input className="login-page__form-input" type="text" id="password" placeholder="Introduce tu password" />
 
-          <button className="login-page__form-submit" type="submit">
-            ACCEDER
-          </button>
-          <button className="login-page__form-signin">REGISTRARSE</button>
-        </form>
+            <button className="login-page__form-submit" type="submit">
+              ACCEDER
+            </button>
+            <button className="login-page__form-signin">REGISTRARSE</button>
+          </form>
+        </div>
       </div>
       <Footer></Footer>
     </div>
