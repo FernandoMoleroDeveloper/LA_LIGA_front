@@ -4,21 +4,10 @@
   &__containers {
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: center;
     justify-content: center;
     margin: 40px;
     min-width: 100%;
-    position: relative;
-    top: -250px;
-  }
-
-  &__spacer {
-    height: 10px;
-  }
-
-  &__image {
-    width: 100%;
-    border-bottom: 10px solid black;
   }
 
   &__box {
