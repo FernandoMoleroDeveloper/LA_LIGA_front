@@ -4,12 +4,18 @@
   background-color: $background-player;
   height: 100%;
 
+  &__container {
+    display: flex;
+    height: calc(100vh - 130px);
+  }
+
   &__box {
     display: flex;
     padding: 25px;
     border-radius: 10px;
     background-color: $background-generic;
     width: 475px;
+    height: 730px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
