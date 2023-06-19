@@ -1,12 +1,9 @@
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
 import teamLogo from "../../assets/team-logo.png";
-import "./DashboardPlayerPage.scss";
+import "./DashboardPlayer.scss";
 
-const DashboardPlayerPage = (): JSX.Element => {
+const DashboardPlayer = (): JSX.Element => {
   return (
     <div className="dashboard-player page">
-      <Header></Header>
 
       <div className="dashboard-player__container">
         <div className="dashboard-player__left-column">
@@ -146,10 +143,8 @@ const DashboardPlayerPage = (): JSX.Element => {
           </div>
         </div>
       </div>
-
-      <Footer></Footer>
     </div>
   );
 };
 
-export default DashboardPlayerPage;
+export default DashboardPlayer;
