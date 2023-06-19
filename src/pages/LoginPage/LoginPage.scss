@@ -2,7 +2,11 @@
 
 .login-page {
   background-color: $background-player;
-  height: 100%;
+
+  &__container {
+    display: flex;
+    height: calc(100vh - 130px);
+  }
 
   &__box {
     display: flex;
@@ -15,6 +19,7 @@
     justify-content: center;
     margin: 100px auto 50px;
     box-shadow: 1px 5px 10px $misc-clear;
+    height: 550px;
 
     &-title {
       padding-left: 10px;
