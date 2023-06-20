@@ -1,21 +1,27 @@
+import { AuthContext } from "../../../App";
+import { ROL, UserResponse } from "../../../models/User";
 import DashboardPlayerUser from "../DashboardPlayerUser/DashboardPlayerUser";
 import "./DashboardPlayerTable.scss";
+import React, { useContext } from "react";
 
-export interface MockUserInterface {
-  name: string;
-  surname: string;
-  email: string;
-  role: string;
-}
+// export interface MockUserInterface {
+//   name: string;
+//   surname: string;
+//   email: string;
+//   role: string;
+// }
 
-const mockUser: MockUserInterface = {
-  name: "Nombre",
-  surname: "Apellidos",
+const mockUser: UserResponse = {
+  _id: "xxx",
+  firstName: "Nombre",
+  lastName: "Apellidos",
   email: "email@email.com",
-  role: "Jugador",
+  rol: ROL.PLAYER,
 };
 
 const DashboardPlayerTable = (): JSX.Element => {
+  const authInfo = useContext(AuthContext);
+
   return (
     <>
       <div className="dashboard-player__team">
@@ -30,7 +36,7 @@ const DashboardPlayerTable = (): JSX.Element => {
               <th>EMAIL</th>
               <th>ROL</th>
               {
-                authInfo?.rol === "Manager" ? (
+                authInfo?.userRol === ROL.MANAGER ? (
                   <th>ELIMINAR</th>
                 ) : null
               }
