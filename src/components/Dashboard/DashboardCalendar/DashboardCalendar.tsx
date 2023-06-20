@@ -1,4 +1,4 @@
-import "./DashboardPlayerCalendar.scss";
+import "./DashboardCalendar.scss";
 import DashboardPlayerMatch from "../DashboardPlayerMatch/DashboardPlayerMatch";
 
 export interface MockMatchInterface {
@@ -21,7 +21,7 @@ const mockMatch: MockMatchInterface = {
   round: 1
 };
 
-const DashboardPlayerCalendar = ({ user }: any): JSX.Element => {
+const DashboardCalendar = ({ user }: any): JSX.Element => {
   return (
     <>
       <div className="dashboard-player__matches">
@@ -47,4 +47,4 @@ const DashboardPlayerCalendar = ({ user }: any): JSX.Element => {
   );
 };
 
-export default DashboardPlayerCalendar;
+export default DashboardCalendar;

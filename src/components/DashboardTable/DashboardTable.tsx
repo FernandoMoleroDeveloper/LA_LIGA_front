@@ -1,7 +1,7 @@
-import { AuthContext } from "../../../App";
-import { ROL, UserResponse } from "../../../models/User";
-import DashboardPlayerUser from "../DashboardPlayerUser/DashboardPlayerUser";
-import "./DashboardPlayerTable.scss";
+import { AuthContext } from "../../App";
+import { ROL, UserResponse } from "../../models/User";
+import DashboardPlayerUser from "../Dashboard/DashboardPlayerUser/DashboardPlayerUser";
+import "./DashboardTable.scss";
 import React, { useContext } from "react";
 
 // export interface MockUserInterface {
