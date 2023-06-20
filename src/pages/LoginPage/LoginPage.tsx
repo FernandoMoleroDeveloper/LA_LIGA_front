@@ -1,11 +1,10 @@
 // import { useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import "./LoginPage.scss";
 import { AuthContext } from "../../App";
 import React, { useContext, useRef } from "react";
-import { NavLink } from "react-router-dom";
 
 const API_URL_LOGIN = `${process.env.REACT_APP_API_URL as string}/user/login`;
 
@@ -52,7 +51,7 @@ const LoginPage = (): JSX.Element => {
         // Login OK -> Guardamos las credenciales
         if (data.token && data.rol && authInfo.logIn) {
           authInfo.logIn(data.token, data.rol);
-          navigate("/dashboard")
+          navigate("/dashboard");
         }
       })
       .catch((error) => {
