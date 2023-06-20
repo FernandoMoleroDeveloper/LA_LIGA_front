@@ -34,7 +34,6 @@ const DashboardPage = (): JSX.Element => {
       }
       return await response.json()
     }).then(responseParsed => {
-      console.log(responseParsed)
       setUser(responseParsed.user);
       setPlayersOnMyTeam(responseParsed.playersOnMyTeam);
       setMatchsOnMyTeam(responseParsed.matchsOnMyTeam);
@@ -89,7 +88,10 @@ const DashboardPage = (): JSX.Element => {
       );
       break;
   }
-  console.log({ playersOnMyTeam, matchsOnMyTeam })
+
+  console.log("Here is the players and matches:")
+  console.log({ playersOnMyTeam, matchsOnMyTeam });
+
   return (
     <div className="dashboard page">
       <Header></Header>

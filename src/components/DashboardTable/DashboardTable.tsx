@@ -24,12 +24,12 @@ const DashboardPlayerTable = (): JSX.Element => {
 
   return (
     <>
-      <div className="dashboard-player__team">
+      <div className="dashboard__team">
         <table>
           <thead>
             <tr>
               <th>
-                <div className="dashboard-player__team-title">MI EQUIPO</div>
+                <div className="dashboard__team-title">MI EQUIPO</div>
               </th>
               <th>NOMBRE</th>
               <th>APELLIDOS</th>
@@ -43,12 +43,12 @@ const DashboardPlayerTable = (): JSX.Element => {
             </tr>
           </thead>
           <tbody>
-            <tr className="dashboard-player__team-spacer-x2"></tr>
+            <tr className="dashboard__team-spacer-x2"></tr>
             <DashboardPlayerUser user={mockUser}></DashboardPlayerUser>
             <DashboardPlayerUser user={mockUser}></DashboardPlayerUser>
             <DashboardPlayerUser user={mockUser}></DashboardPlayerUser>
             <DashboardPlayerUser user={mockUser}></DashboardPlayerUser>
-            <tr className="dashboard-player__team-spacer"></tr>
+            <tr className="dashboard__team-spacer"></tr>
           </tbody>
         </table>
       </div>

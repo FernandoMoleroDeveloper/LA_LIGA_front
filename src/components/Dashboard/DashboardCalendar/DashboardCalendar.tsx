@@ -24,17 +24,17 @@ const mockMatch: MockMatchInterface = {
 const DashboardCalendar = ({ user }: any): JSX.Element => {
   return (
     <>
-      <div className="dashboard-player__matches">
+      <div className="dashboard__matches">
         <table>
           <thead>
             <tr>
               <th>
-                <div className="dashboard-player__matches-title">PARTIDOS</div>
+                <div className="dashboard__matches-title">PARTIDOS</div>
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr className="dashboard-player__matches-spacer"></tr>
+            <tr className="dashboard__matches-spacer"></tr>
             <DashboardPlayerMatch mockMatch={mockMatch}></DashboardPlayerMatch>
             <DashboardPlayerMatch mockMatch={mockMatch}></DashboardPlayerMatch>
             <DashboardPlayerMatch mockMatch={mockMatch}></DashboardPlayerMatch>
