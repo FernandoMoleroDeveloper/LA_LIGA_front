@@ -15,7 +15,7 @@ const mockUser: MockUserInterface = {
   role: "Jugador",
 };
 
-const DashboardPlayerTable = ({ user }: any): JSX.Element => {
+const DashboardPlayerTable = (): JSX.Element => {
   return (
     <>
       <div className="dashboard-player__team">
@@ -29,6 +29,11 @@ const DashboardPlayerTable = ({ user }: any): JSX.Element => {
               <th>APELLIDOS</th>
               <th>EMAIL</th>
               <th>ROL</th>
+              {
+                authInfo?.rol === "Manager" ? (
+                  <th>ELIMINAR</th>
+                ) : null
+              }
             </tr>
           </thead>
           <tbody>
