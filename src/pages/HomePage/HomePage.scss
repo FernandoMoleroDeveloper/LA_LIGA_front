@@ -4,10 +4,10 @@
   &__containers {
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     margin: 40px;
-    min-width: 100%;
+    max-width: 100%;
     position: relative;
     top: -250px;
   }

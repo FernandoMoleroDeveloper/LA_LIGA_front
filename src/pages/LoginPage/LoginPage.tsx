@@ -5,8 +5,9 @@ import Header from "../../components/Header/Header";
 import "./LoginPage.scss";
 import { AuthContext } from "../../App";
 import React, { useContext, useRef } from "react";
+import { NavLink } from "react-router-dom";
 
-const API_URL_LOGIN = `${process.env.REACT_APP_API_URL as string}/user/login`
+const API_URL_LOGIN = `${process.env.REACT_APP_API_URL as string}/user/login`;
 
 interface LogInInfo {
   email: string;
@@ -19,7 +20,8 @@ const LoginPage = (): JSX.Element => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate(); // Obtener la función navigate
 
-  const submitForm = (event: React.FormEvent): void => { //
+  const submitForm = (event: React.FormEvent): void => {
+    //
     event.preventDefault();
 
     const loginInfo: LogInInfo = {
@@ -81,7 +83,9 @@ const LoginPage = (): JSX.Element => {
             <button className="login-page__form-submit" type="submit" title="LogIn">
               ACCEDER
             </button>
-            <button className="login-page__form-signin">REGISTRARSE</button>
+            <NavLink className="login-page__form-signin" to="/sign-in">
+              <button className="login-page__form-signin">REGISTRARSE</button>
+            </NavLink>
           </form>
         </div>
       </div>
