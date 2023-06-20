@@ -1,4 +1,5 @@
 // import { useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import "./LoginPage.scss";
@@ -16,6 +17,7 @@ const LoginPage = (): JSX.Element => {
   const authInfo = useContext(AuthContext);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate(); // Obtener la función navigate
 
   const submitForm = (event: React.FormEvent): void => { //
     event.preventDefault();
@@ -48,6 +50,7 @@ const LoginPage = (): JSX.Element => {
         // Login OK -> Guardamos las credenciales
         if (data.token && data.rol && authInfo.logIn) {
           authInfo.logIn(data.token, data.rol);
+          navigate("/dashboard")
         }
       })
       .catch((error) => {
