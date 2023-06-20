@@ -10,7 +10,7 @@ const SignInPage = (): JSX.Element => {
         <div className="sign-in-page__box">
           <h2 className="sign-in-page__box-title">BIENVENIDO</h2>
           <h3 className="sign-in-page__box-subtitle">SIGN IN</h3>
-          <p className="login-page__box-message">Introduce tus credenciales para acceder:</p>
+          <p className="login-page__box-message">Introduce tus datos para registrarte:</p>
           <form className="sign-in-page__form">
             <label className="sign-in-page__form-label" htmlFor="email">
               Email:

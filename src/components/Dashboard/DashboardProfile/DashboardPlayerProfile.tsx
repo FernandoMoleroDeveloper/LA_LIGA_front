@@ -1,6 +1,6 @@
 import "./DashboardPlayerProfile.scss";
 
-const DashboardPlayerProfile = ({ mockMatch }: any): JSX.Element => {
+const DashboardPlayerProfile = ({ user }: any): JSX.Element => {
   return (
     <>
       <div className="dashboard-player__profile"></div>
