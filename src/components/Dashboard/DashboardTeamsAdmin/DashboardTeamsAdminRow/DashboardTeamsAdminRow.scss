@@ -1,0 +1,16 @@
+@import "../../../../styles/utilities/variables";
+.dashboard-team {
+  &__edit-team {
+    text-align: center;
+    color: $font-color-scores;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &__delete-team {
+    text-align: center;
+    color: $font-color-alert;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

@@ -1,3 +1,4 @@
+import DashboardAdminCreateTeam from "../../DashboardAdminCreateTeam/DashboardAdminCreateTeam";
 import DashboardTeamsAdminRow from "../DashboardTeamsAdminRow/DashboardTeamsAdminRow";
 import "./DashboardTeamsAdminTable.scss";
 // import React, { useContext } from "react";
@@ -30,7 +31,9 @@ const DashboardTeamsTable = ({ teamsAdmin }: any): JSX.Element => {
               <th>NOMBRE</th>
               <th>ALIAS</th>
               <th>DELEGADO</th>
-              <th>ACCIONES</th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -42,6 +45,10 @@ const DashboardTeamsTable = ({ teamsAdmin }: any): JSX.Element => {
             <tr className="dashboard__team-spacer"></tr>
           </tbody>
         </table>
+      </div>
+      <p>AÑADIR EQUIPO</p>
+      <div>
+        <DashboardAdminCreateTeam></DashboardAdminCreateTeam>
       </div>
     </>
   );
