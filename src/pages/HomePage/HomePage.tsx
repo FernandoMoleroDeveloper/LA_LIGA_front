@@ -1,10 +1,65 @@
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import "./HomePage.scss";
-import teamLogo from "../../assets/team-logo.png";
 import homeImage from "../../assets/home-image.png";
+import { useEffect, useState } from "react";
+import { MatchResponse } from "../../models/Match";
+import CalendarTable from "../../components/Home/Calendar/CalendarTable/CalendarTable";
+import ClasificationTeamTable from "../../components/Home/Clasification/ClasificationTable/ClasificationTable";
+
+const API_URL_ALLMATCHS = `${process.env.REACT_APP_API_URL as string}/match/matchall`;
+const API_URL_CLASIFICATION = `${process.env.REACT_APP_API_URL as string}/match/calculate-statics`;
 
 const HomePage = (): JSX.Element => {
+  const [matchs, setMatchs] = useState<MatchResponse[]>([])
+  const [teams, setTeams] = useState([])
+  const [totalItems, setTotalItems] = useState<number>()
+
+  console.log(totalItems)
+
+  useEffect(() => {
+    fetchmMatchs()
+    fetchTeams()
+  }, [])
+
+  const fetchmMatchs = (): void => {
+    fetch(API_URL_ALLMATCHS)
+      .then(async response => {
+        if (response.status !== 200) {
+          alert("Ha ocurrido un error en la petición")
+        }
+        return await response.json()
+      }).then(responseParsed => {
+        setMatchs(responseParsed.data);
+        setTotalItems(responseParsed.totalTeams)
+      })
+      .catch(error => {
+        alert("Ha ocurrido un error en la petición")
+        console.error(error);
+      })
+  };
+
+  console.log(matchs)
+
+  const fetchTeams = (): void => {
+    fetch(API_URL_CLASIFICATION)
+      .then(async (response) => {
+        if (response.status !== 200) {
+          alert("Ha ocurrido un error en la petición");
+        }
+        return await response.json();
+      })
+      .then((responseParsed) => {
+        setTeams(responseParsed);
+      })
+      .catch((error) => {
+        alert("Ha ocurrido un error en la petición");
+        console.error(error);
+      });
+  };
+
+  console.log(teams);
+
   return (
     <div className="home-page page">
       <Header></Header>
@@ -12,99 +67,8 @@ const HomePage = (): JSX.Element => {
       <div className="home-page__containers">
         <div className="home-page__box">
           <h2 className="home-page__box-title">CLASIFICACIÓN</h2>
-          <table className="home-page__table">
-            <thead>
-              <tr>
-                <th>POS</th>
-                <th>EQUIPO</th>
-                <th>PTS</th>
-                <th>PP</th>
-                <th>PG</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="home-page__spacer"></tr>
-              <tr className="home-page__spacer"></tr>
-              <tr className="home-page__table-clas">
-                <td className="home-page__table-number">1</td>
-                <td>
-                  <div className="home-page__table-team">
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                    <p>Equipo 1</p>
-                  </div>
-                </td>
-                <td>12</td>
-                <td>5</td>
-                <td>3</td>
-              </tr>
-              <tr className="home-page__spacer"></tr>
-              <tr className="home-page__table-clas">
-                <td className="home-page__table-number">2</td>
-                <td className="home-page__table-team">
-                  <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  <p>Equipo 1</p>
-                </td>
-                <td>12</td>
-                <td>5</td>
-                <td>3</td>
-              </tr>
-              <tr className="home-page__spacer"></tr>
-              <tr className="home-page__table-clas">
-                <td className="home-page__table-number">3</td>
-                <td className="home-page__table-team">
-                  <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  <p>Equipo 1</p>
-                </td>
-                <td>12</td>
-                <td>5</td>
-                <td>3</td>
-              </tr>
-              <tr className="home-page__spacer"></tr>
-              <tr className="home-page__table-clas">
-                <td className="home-page__table-number">4</td>
-                <td className="home-page__table-team">
-                  <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  <p>Equipo 1</p>
-                </td>
-                <td>12</td>
-                <td>5</td>
-                <td>3</td>
-              </tr>
-              <tr className="home-page__spacer"></tr>
-              <tr className="home-page__table-clas">
-                <td className="home-page__table-number">5</td>
-                <td className="home-page__table-team">
-                  <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  <p>Equipo 1</p>
-                </td>
-                <td>12</td>
-                <td>5</td>
-                <td>3</td>
-              </tr>
-              <tr className="home-page__spacer"></tr>
-              <tr className="home-page__table-clas">
-                <td className="home-page__table-number">6</td>
-                <td className="home-page__table-team">
-                  <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  <p>Equipo 1</p>
-                </td>
-                <td>12</td>
-                <td>5</td>
-                <td>3</td>
-              </tr>
-              <tr className="home-page__spacer"></tr>
-              <tr className="home-page__table-clas">
-                <td className="home-page__table-number">7</td>
-                <td className="home-page__table-team">
-                  <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  <p>Equipo 1</p>
-                </td>
-                <td>12</td>
-                <td>5</td>
-                <td>3</td>
-              </tr>
-            </tbody>
-          </table>
+          <ClasificationTeamTable teams={teams}/>
+
         </div>
         <div className="home-page__box">
           <h2 className="home-page__box-title">PARTIDOS</h2>
@@ -113,104 +77,8 @@ const HomePage = (): JSX.Element => {
             <p>JORNADA 1</p>
             <button className="home-page__box-btn">{">"}</button>
           </div>
-          <table className="home-page__table">
-            <tbody>
-              <tr>
-                <div className="home-page__table-row">
-                  <td>RMC</td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  </td>
-                  <td>
-                    <div className="home-page__table-score">NO DISPUTADO</div>
-                  </td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  </td>
-                  <td>BCN</td>
-                </div>
-              </tr>
-              <tr>
-                <div className="home-page__table-row">
-                  <td>RMC</td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  </td>
-                  <td>
-                    <div className="home-page__table-score">10-0</div>
-                  </td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  </td>
-                  <td>BCN</td>
-                </div>
-              </tr>
-              <tr>
-                <div className="home-page__table-row">
-                  <td>RMC</td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  </td>
-                  <td>
-                    <div className="home-page__table-score">10-0</div>
-                  </td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  </td>
-                  <td>BCN</td>
-                </div>
-              </tr>
-              <tr>
-                <div className="home-page__table-row">
-                  <td>RMC</td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  </td>
-                  <td>
-                    <div className="home-page__table-score">10-0</div>
-                  </td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  </td>
-                  <td>BCN</td>
-                </div>
-              </tr>
-              <tr>
-                <div className="home-page__table-row">
-                  <td>RMC</td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  </td>
-                  <td>
-                    <div className="home-page__table-score">10-0</div>
-                  </td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Escudo avatar" />
-                  </td>
-                  <td>BCN</td>
-                </div>
-              </tr>
-              <tr>
-                <div className="home-page__table-row">
-                  <td>
-                    <span>RMC</span>
-                  </td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Team logo" />
-                  </td>
-                  <td>
-                    <div className="home-page__table-score">0-0</div>
-                  </td>
-                  <td>
-                    <img className="home-page__team-img" src={teamLogo} alt="Team logo" />
-                  </td>
-                  <td>
-                    <span>PLN</span>
-                  </td>
-                </div>
-              </tr>
-            </tbody>
-          </table>
+          <CalendarTable matchs={matchs}/>
+
         </div>
       </div>
 

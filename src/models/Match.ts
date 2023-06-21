@@ -12,7 +12,7 @@ export interface MatchCreate {
 }
 
 export interface MatchResponse {
-  _id: string;
+  id: string;
   date: Date;
   localTeam: TeamResponse;
   visitorTeam: TeamResponse;
@@ -20,4 +20,12 @@ export interface MatchResponse {
   goalsVisitor?: UserResponse[];
   played: boolean;
   round: number;
+}
+
+export interface MatchTableProps {
+  matchs: MatchResponse[];
+}
+
+export interface CalendarRowProps {
+  match: MatchResponse;
 }
