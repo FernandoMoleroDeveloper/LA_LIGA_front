@@ -1,16 +1,19 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../../App";
+import { ROL } from "../../../../models/User";
 import "./DashboardTeamsAdminRow.scss";
 
-const DashboardTeamsAdminRow = ({ user }: any): JSX.Element => {
+const DashboardTeamsAdminRow = ({ data, user }: any): JSX.Element => {
+  const authInfo = useContext(AuthContext);
   return (
     <>
       <tr className="dashboard__team-row">
         <td>
-          <img className="dashboard__team-thumbnail" src={user.image} alt="profile-picture" />
+          <img className="dashboard__team-thumbnail" src={data?.image} alt="profile-picture" />
         </td>
-        <td>{user.firstName}</td>
-        <td>{user.lastName}</td>
-        <td>{user.email}</td>
-        <td>{user.rol}</td>
+        <td>{data?.name}</td>
+        <td>{data?.initials}</td>
+        {authInfo?.userRol === ROL.ADMIN ? <td className="dashboard__team-delete-player">ELIMINAR</td> : null}
       </tr>
       <tr className="dashboard__team-spacer"></tr>
     </>

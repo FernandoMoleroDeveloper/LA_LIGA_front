@@ -27,7 +27,9 @@ const DashboardPage = (): JSX.Element => {
 
   useEffect(() => {
     fetchmMyProfile();
-    fetchTeamsAdmin();
+    if (authInfo.userRol === ROL.ADMIN) {
+      fetchTeamsAdmin();
+    }
 
     switch (authInfo.userRol) {
       case ROL.PLAYER:
