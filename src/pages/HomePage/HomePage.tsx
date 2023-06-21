@@ -13,9 +13,7 @@ const API_URL_CLASIFICATION = `${process.env.REACT_APP_API_URL as string}/match/
 const HomePage = (): JSX.Element => {
   const [matchs, setMatchs] = useState<MatchResponse[]>([])
   const [teams, setTeams] = useState([])
-  const [totalItems, setTotalItems] = useState<number>()
-
-  console.log(totalItems)
+  const [currentRound, setCurrentRound] = useState(1);
 
   useEffect(() => {
     fetchmMatchs()
@@ -31,15 +29,12 @@ const HomePage = (): JSX.Element => {
         return await response.json()
       }).then(responseParsed => {
         setMatchs(responseParsed.data);
-        setTotalItems(responseParsed.totalTeams)
       })
       .catch(error => {
         alert("Ha ocurrido un error en la petición")
         console.error(error);
       })
   };
-
-  console.log(matchs)
 
   const fetchTeams = (): void => {
     fetch(API_URL_CLASIFICATION)
@@ -58,8 +53,16 @@ const HomePage = (): JSX.Element => {
       });
   };
 
-  console.log(teams);
+  const maxRound = Math.max(...matchs.map((match) => match.round));
+  const filteredMatchs = matchs.filter((match) => match.round === currentRound);
 
+  const handlePreviousRound = (): void => {
+    setCurrentRound((prevRound) => Math.max(prevRound - 1, 1));
+  };
+
+  const handleNextRound = (): void => {
+    setCurrentRound((prevRound) => Math.min(prevRound + 1, maxRound));
+  };
   return (
     <div className="home-page page">
       <Header></Header>
@@ -67,24 +70,25 @@ const HomePage = (): JSX.Element => {
       <div className="home-page__containers">
         <div className="home-page__box">
           <h2 className="home-page__box-title">CLASIFICACIÓN</h2>
-          <ClasificationTeamTable teams={teams}/>
-
+          <ClasificationTeamTable teams={teams} />
         </div>
         <div className="home-page__box">
           <h2 className="home-page__box-title">PARTIDOS</h2>
           <div className="home-page__box-subtitle">
-            <button className="home-page__box-btn">{"<"}</button>
-            <p>JORNADA 1</p>
-            <button className="home-page__box-btn">{">"}</button>
+            <button className="home-page__box-btn" onClick={handlePreviousRound}>
+              {"<"}
+            </button>
+            <p>{currentRound}</p>
+            <button className="home-page__box-btn" onClick={handleNextRound}>
+              {">"}
+            </button>
           </div>
-          <CalendarTable matchs={matchs}/>
-
+          <CalendarTable matchs={filteredMatchs} />
         </div>
       </div>
-
       <Footer></Footer>
     </div>
   );
 };
 
-export default HomePage;
+export default HomePage
