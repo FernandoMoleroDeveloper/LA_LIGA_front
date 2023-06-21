@@ -4,11 +4,11 @@ import { NavLink } from "react-router-dom";
 import loginAvatar from "../../assets/login-avatar.svg";
 import { AuthContext } from "../../App";
 
-const Header = (): JSX.Element => {
+const Header = ({ roleColor }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
 
   return (
-    <header className="header">
+    <header className={roleColor || "header"}>
       <NavLink to="/" className="header__home">
         FOOTBALL MANAGER
       </NavLink>

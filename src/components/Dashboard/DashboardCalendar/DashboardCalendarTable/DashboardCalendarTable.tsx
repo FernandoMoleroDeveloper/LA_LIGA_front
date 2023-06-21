@@ -16,9 +16,9 @@ const DashboardCalendarTable = ({ matchesOnMyTeam }: any): JSX.Element => {
           <tbody>
             <tr className="dashboard__matches-spacer"></tr>
             {
-              matchesOnMyTeam.map((match: any) => {
+              matchesOnMyTeam?.map((match: any) => {
                 return (
-                  <DashboardCalendarRow key={match._id} match={match}></DashboardCalendarRow>
+                  <DashboardCalendarRow key={match?._id} match={match}></DashboardCalendarRow>
                 )
               })
             }
