@@ -1,28 +1,21 @@
+import useFetch from "../../../../hooks/useFetchGet";
 import DashboardFreeAgentRow from "../../DashboardFreeAgent/DashboardFreeAgentRow/DashboardFreeAgentRow";
 import "./DashboardFreeAgentTable.scss";
 import { useState } from "react";
 
-export interface MockFreeAgentInterface {
-  firstName: string;
-  lastName: string;
-  email: string;
-  team: string;
-  rol: string;
-}
-
-const mockFreeAgent: MockFreeAgentInterface = {
-  firstName: "Free",
-  lastName: "Agent",
-  email: "email@email.com",
-  team: "",
-  rol: "Jugador",
-};
-
 // Funcion que cambia el estado de addPlayers para mostrar la lista de jugadores a agregar.
 
-const DashboardFreeAgentTable = ({ user }: any): JSX.Element => {
+const DashboardFreeAgentTable = ({ user, myTeam }: any): JSX.Element => {
   const [addPlayers, setAddPlayers] = useState(false);
   const addPlayerButtonText = addPlayers ? "FIN DE EDICIÓN" : "AÑADIR JUGADORES";
+  const API_URL_FREE_AGENTS = `${process.env.REACT_APP_API_URL as string}/user/no-team`;
+  // Fetch free agent players
+  const [freeAgentPlayers]: any = useFetch(`${API_URL_FREE_AGENTS}`);
+
+  if (freeAgentPlayers) {
+    console.log("Free agent players list:");
+    console.log(freeAgentPlayers);
+  }
 
   const toggleAddPlayers = (): void => {
     setAddPlayers(!addPlayers);
@@ -42,17 +35,21 @@ const DashboardFreeAgentTable = ({ user }: any): JSX.Element => {
                 <th>NOMBRE</th>
                 <th>APELLIDOS</th>
                 <th>EMAIL</th>
-                <th>EQUIPO</th>
                 <th>ROL</th>
-                <th>ACCIONES</th>
+                <th className="dashboard__free-agent-add-player-head">AÑADIR AL EQUIPO</th>
               </tr>
             </thead>
             <tbody>
               <tr className="dashboard__team-spacer-x2"></tr>
-              <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
-              <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
-              <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
-              <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
+              {
+                freeAgentPlayers?.map((user: any) => {
+                  return (
+                    <>
+                      <DashboardFreeAgentRow user={user} myTeam={myTeam}></DashboardFreeAgentRow>
+                    </>
+                  )
+                })
+              }
               <tr className="dashboard__team-spacer"></tr>
             </tbody>
           </table>

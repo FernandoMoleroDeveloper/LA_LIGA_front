@@ -4,21 +4,6 @@ import DashboardUserRow from "../DashboardTeamRow/DashboardTeamRow";
 import "./DashboardTeamsTable.scss";
 import React, { useContext } from "react";
 
-// export interface MockUserInterface {
-//   name: string;
-//   surname: string;
-//   email: string;
-//   role: string;
-// }
-
-// const mockUser: UserResponse = {
-//   _id: "xxx",
-//   firstName: "Nombre",
-//   lastName: "Apellidos",
-//   email: "email@email.com",
-//   rol: ROL.PLAYER,
-// };
-
 const DashboardTeamsTable = ({ playersOnMyTeam }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
 
