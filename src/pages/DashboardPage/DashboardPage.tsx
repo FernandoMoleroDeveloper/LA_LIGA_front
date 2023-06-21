@@ -108,7 +108,7 @@ const DashboardPage = (): JSX.Element => {
           {/* Mi equipo */}
           <DashboardUsersTable playersOnMyTeam={playersOnMyTeam}></DashboardUsersTable>
           {/* Agregar jugadores */}
-          <DashboardFreeAgentTable></DashboardFreeAgentTable>
+          <DashboardFreeAgentTable myTeam={user?.team}></DashboardFreeAgentTable>
           {/* Mi calendario */}
           <DashboardCalendarTable matchesOnMyTeam={matchesOnMyTeam}></DashboardCalendarTable>
         </>

@@ -66,15 +66,19 @@
     // Cabecera tabla
 
     &-delete-player-head {
-      text-align: center;
+      text-align: center !important;
       color: $font-color-alert;
     }
 
     &-delete-player {
-      text-align: center;
+      text-align: center !important;
       color: $font-color-alert;
       text-decoration: underline;
       cursor: pointer;
+    }
+
+    &-delete-player-row {
+      text-align: center;
     }
 
     & thead th:first-child {
@@ -177,18 +181,6 @@
 
     // Cabecera tabla
 
-    &-delete-player-head {
-      text-align: center;
-      color: $font-color-alert;
-    }
-
-    &-delete-player {
-      text-align: center;
-      color: $font-color-alert;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
     & thead th:first-child {
       border-radius: 5px 0 0 5px;
     }
@@ -261,6 +253,22 @@
       min-width: 45px;
       max-width: 45px;
       border-radius: 100%;
+    }
+
+    &-add-player-head {
+      text-align: center !important;
+      color: $misc-purple;
+    }
+
+    &-add-player {
+      text-align: center !important;
+      color: $misc-purple;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    &-add-player-row {
+      text-align: center;
     }
   }
 

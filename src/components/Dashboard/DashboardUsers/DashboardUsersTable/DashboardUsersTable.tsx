@@ -19,7 +19,7 @@ import React, { useContext } from "react";
 //   rol: ROL.PLAYER,
 // };
 
-const DashboardUsersTable = ({ playersOnMyTeam }: any): JSX.Element => {
+const DashboardUsersTable = ({ playersOnMyTeam, myTeam }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
 
   return (
