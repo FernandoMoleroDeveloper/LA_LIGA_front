@@ -1,0 +1,36 @@
+@import "../../../../styles/utilities/variables";
+.dashboard-free-agent {
+  & table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    border-spacing: 5px 5px;
+  }
+
+  & tbody td:first-child {
+    border-radius: 5px;
+  }
+
+  & tbody td:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+
+  & thead th:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+
+  & thead th:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+
+  & th {
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    background-color: $background-generic;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0px;
+    align-items: center;
+    // padding-left: 30px;
+  }
+}

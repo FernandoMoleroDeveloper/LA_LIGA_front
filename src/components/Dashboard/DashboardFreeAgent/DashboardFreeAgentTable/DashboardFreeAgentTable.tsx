@@ -1,24 +1,26 @@
-import DashboardPlayerUser from "../../DashboardUsers/DashboardUserRow/DashboardUserRow";
+import DashboardFreeAgentRow from "../../DashboardFreeAgent/DashboardFreeAgentRow/DashboardFreeAgentRow";
 import "./DashboardFreeAgentTable.scss";
 
 export interface MockFreeAgentInterface {
-  name: string;
-  surname: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  role: string;
+  team: string;
+  rol: string;
 }
 
 const mockFreeAgent: MockFreeAgentInterface = {
-  name: "Free",
-  surname: "Agent",
+  firstName: "Free",
+  lastName: "Agent",
   email: "email@email.com",
-  role: "Jugador",
+  team: "",
+  rol: "Jugador",
 };
 
 const DashboardFreeAgentTable = ({ user }: any): JSX.Element => {
   return (
     <>
-      <div className="dashboard__team">
+      <div className="dashboard-free-agent__table">
         <table>
           <thead>
             <tr>
@@ -26,15 +28,17 @@ const DashboardFreeAgentTable = ({ user }: any): JSX.Element => {
               <th>NOMBRE</th>
               <th>APELLIDOS</th>
               <th>EMAIL</th>
+              <th>EQUIPO</th>
               <th>ROL</th>
+              <th>ACCIONES</th>
             </tr>
           </thead>
           <tbody>
             <tr className="dashboard__team-spacer-x2"></tr>
-            <DashboardPlayerUser user={mockFreeAgent}></DashboardPlayerUser>
-            <DashboardPlayerUser user={mockFreeAgent}></DashboardPlayerUser>
-            <DashboardPlayerUser user={mockFreeAgent}></DashboardPlayerUser>
-            <DashboardPlayerUser user={mockFreeAgent}></DashboardPlayerUser>
+            <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
+            <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
+            <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
+            <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
             <tr className="dashboard__team-spacer"></tr>
           </tbody>
         </table>

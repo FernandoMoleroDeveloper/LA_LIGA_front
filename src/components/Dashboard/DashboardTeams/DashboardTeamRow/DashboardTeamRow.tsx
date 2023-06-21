@@ -1,6 +1,6 @@
-import "./DashboardUserRow.scss";
+import "./DashboardTeamRow.scss";
 
-const DashboardUserRow = ({ user }: any): JSX.Element => {
+const DashboardTeamRow = ({ user }: any): JSX.Element => {
   return (
     <>
       <tr className="dashboard__team-row">
@@ -17,4 +17,4 @@ const DashboardUserRow = ({ user }: any): JSX.Element => {
   );
 };
 
-export default DashboardUserRow;
+export default DashboardTeamRow;
