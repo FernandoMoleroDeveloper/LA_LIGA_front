@@ -1,5 +1,5 @@
 import "./DashboardProfile.scss";
-import { FullUser } from "../../models/User";
+import { FullUser } from "../../../models/User";
 
 const DashboarProfile = ({ user }: FullUser): JSX.Element => {
   return (

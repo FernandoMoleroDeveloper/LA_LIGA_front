@@ -1,13 +1,13 @@
 import "./DashboardPage.scss";
-import DashboardCalendar from "../../components/Dashboard/DashboardCalendar/DashboardCalendar";
-import DashboardTable from "../../components/DashboardTable/DashboardTable";
+import DashboardCalendarTable from "../../components/Dashboard/DashboardCalendar/DashboardCalendarTable/DashboardCalendarTable";
+import DashboardUsersTable from "../../components/Dashboard/DashboardUsers/DashboardUsersTable/DashboardUsersTable";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import DashboardFreeAgentTable from "../../components/Dashboard/DashboardFreeAgentTable/DashboardFreeAgentTable";
+import DashboardFreeAgentTable from "../../components/Dashboard/DashboardFreeAgent/DashboardFreeAgentTable/DashboardFreeAgentTable";
 import React, { useContext } from "react";
 import { AuthContext } from "../../App";
 import { ROL, UserResponse } from "../../models/User";
-import DashboardProfile from "../../components/DashboardProfile/DashboardProfile";
+import DashboardProfile from "../../components/Dashboard/DashboardProfile/DashboardProfile";
 import { MatchResponse } from "../../models/Match";
 
 const DashboardPage = (): JSX.Element => {
@@ -49,9 +49,9 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           {/* Mi equipo */}
-          <DashboardTable playersOnMyTeam={playersOnMyTeam}></DashboardTable>
+          <DashboardUsersTable playersOnMyTeam={playersOnMyTeam}></DashboardUsersTable>
           {/* Mi calendario */}
-          <DashboardCalendar matchesOnMyTeam={matchesOnMyTeam}></DashboardCalendar>
+          <DashboardCalendarTable matchesOnMyTeam={matchesOnMyTeam}></DashboardCalendarTable>
         </>
       );
       break;
@@ -59,11 +59,11 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           {/* Mi equipo */}
-          {/* <DashboardTable></DashboardTable> */}
+          {/* <DashboardUsersTable></DashboardUsersTable> */}
           {/* Agregar jugadores */}
           <DashboardFreeAgentTable></DashboardFreeAgentTable>
           {/* Mi calendario */}
-          <DashboardCalendar></DashboardCalendar>
+          <DashboardCalendarTable></DashboardCalendarTable>
         </>
       );
       break;
@@ -71,9 +71,9 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           {/* Mi equipo */}
-          {/* <DashboardTable></DashboardTable> */}
+          {/* <DashboardUsersTable></DashboardUsersTable> */}
           {/* Mi calendario */}
-          <DashboardCalendar></DashboardCalendar>
+          <DashboardCalendarTable></DashboardCalendarTable>
         </>
       );
       break;
@@ -81,9 +81,9 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           {/* Mi equipo */}
-          {/* <DashboardTable></DashboardTable> */}
+          {/* <DashboardUsersTable></DashboardUsersTable> */}
           {/* Mi calendario */}
-          <DashboardCalendar></DashboardCalendar>
+          <DashboardCalendarTable></DashboardCalendarTable>
         </>
       );
       break;

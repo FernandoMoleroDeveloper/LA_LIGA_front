@@ -1,7 +1,7 @@
-import "./DashboardPlayerMatch.scss";
-import teamLogo from "../../../assets/team-logo.png";
+import "./DashboardCalendarRow.scss";
+import teamLogo from "../../../../assets/team-logo.png";
 
-const DashboardPlayerMatch = ({ match }: any): JSX.Element => {
+const DashboardCalendarRow = ({ match }: any): JSX.Element => {
   console.log("Este es el partido");
   console.log(match);
   return (
@@ -26,4 +26,4 @@ const DashboardPlayerMatch = ({ match }: any): JSX.Element => {
   );
 };
 
-export default DashboardPlayerMatch;
+export default DashboardCalendarRow;

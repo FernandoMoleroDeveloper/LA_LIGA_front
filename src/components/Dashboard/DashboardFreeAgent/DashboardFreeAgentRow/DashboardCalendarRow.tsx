@@ -1,6 +1,6 @@
-import "./DashboardFreeAgentPlayer.scss";
+import "./DashboardCalendarRow.scss";
 
-const DashboardFreeAgentPlayer = ({ user }: any): JSX.Element => {
+const DashboardCalendarRow = ({ user }: any): JSX.Element => {
   return (
     <>
       <tr className="dashboard__team-row">
@@ -17,4 +17,4 @@ const DashboardFreeAgentPlayer = ({ user }: any): JSX.Element => {
   );
 };
 
-export default DashboardFreeAgentPlayer;
+export default DashboardCalendarRow;
