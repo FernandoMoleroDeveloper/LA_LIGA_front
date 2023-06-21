@@ -214,12 +214,12 @@
 
     &-round {
         font-weight: bold;
-        min-width: 30%;
+        min-width: 25%;
     }
 
     &-teams {
         display: flex;
-        min-width: 40%;
+        min-width: 50%;
         text-align: center;
         align-items: center;
         justify-content: center;
@@ -232,6 +232,7 @@
     
     &-name {
         font-size: 14px;
+        width: 45px;
     }
 
     &-results {
@@ -245,7 +246,7 @@
     }
 
     &-blank {
-      min-width: 30%;
+      min-width: 25%;
     }
   }
 }
