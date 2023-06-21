@@ -8,9 +8,10 @@ import DashboardFreeAgentTable from "../../components/Dashboard/DashboardFreeAge
 import { AuthContext } from "../../App";
 import { ROL, UserResponse } from "../../models/User";
 import DashboardProfile from "../../components/Dashboard/DashboardProfile/DashboardProfile";
-import { MatchResponse } from "../../models/Match";
+import { TeamResponse } from "../../models/Team";
 import DashboardAdminButtons from "../../components/Dashboard/DashboardAdminButtons/DashboardAdminButtons";
-import DashboardTeamsTable from "../../components/Dashboard/DashboardTeams/DashboardTeamsTable/DashboardTeamsTable";
+import { MatchResponse } from "../../models/Match";
+import DashboardTeamsAdminTable from "../../components/Dashboard/DashboardTeamsAdmin/DashboardTeamsAdminTable/DashboardTeamsAdminTable";
 
 const DashboardPage = (): JSX.Element => {
   const authInfo = useContext(AuthContext);
@@ -18,12 +19,15 @@ const DashboardPage = (): JSX.Element => {
   const [user, setUser] = React.useState<UserResponse>();
   const [playersOnMyTeam, setPlayersOnMyTeam] = useState<UserResponse[]>([]);
   const [matchesOnMyTeam, setMatchesOnMyTeam] = useState<MatchResponse[]>([]);
+  const [teamsAdmin, setTeamsAdmin] = useState<TeamResponse[]>([]);
   const [activeTable, setActiveTable] = React.useState<"freeAgent" | "teams" | "calendar">("freeAgent");
   let content;
   const API_URL_PROFILE = `${process.env.REACT_APP_API_URL as string}/user/myuser`;
+  const API_URL_TEAMS = `${process.env.REACT_APP_API_URL as string}/team`;
 
   useEffect(() => {
     fetchmMyProfile();
+    fetchTeamsAdmin();
 
     switch (authInfo.userRol) {
       case ROL.PLAYER:
@@ -64,6 +68,27 @@ const DashboardPage = (): JSX.Element => {
       });
   };
 
+  const fetchTeamsAdmin = (): void => {
+    fetch(API_URL_TEAMS, {
+      headers: {
+        Authorization: `Bearer ${authInfo?.userToken as string}`,
+      },
+    })
+      .then(async (response) => {
+        if (response.status !== 200) {
+          alert("Ha ocurrido un error en la petición");
+        }
+        return await response.json();
+      })
+      .then((responseParsed) => {
+        setTeamsAdmin(responseParsed.data);
+      })
+      .catch((error) => {
+        alert("Ha ocurrido un error en la petición");
+        console.error(error);
+      });
+  };
+
   switch (authInfo.userRol) {
     case ROL.PLAYER:
       content = (
@@ -92,7 +117,7 @@ const DashboardPage = (): JSX.Element => {
         <>
           <DashboardAdminButtons setActiveTable={setActiveTable} />
           {activeTable === "freeAgent" && <DashboardFreeAgentTable />}
-          {activeTable === "teams" && <DashboardTeamsTable />}
+          {activeTable === "teams" && <DashboardTeamsAdminTable teamsAdmin={teamsAdmin}></DashboardTeamsAdminTable>}
           {activeTable === "calendar" && <DashboardCalendarTable />}
         </>
       );
