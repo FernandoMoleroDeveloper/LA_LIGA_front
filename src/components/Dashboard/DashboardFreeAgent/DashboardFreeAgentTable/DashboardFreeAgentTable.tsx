@@ -1,5 +1,6 @@
 import DashboardFreeAgentRow from "../../DashboardFreeAgent/DashboardFreeAgentRow/DashboardFreeAgentRow";
 import "./DashboardFreeAgentTable.scss";
+import { useState } from "react";
 
 export interface MockFreeAgentInterface {
   firstName: string;
@@ -17,11 +18,24 @@ const mockFreeAgent: MockFreeAgentInterface = {
   rol: "Jugador",
 };
 
+// Funcion que cambia el estado de addPlayers para mostrar la lista de jugadores a agregar
+
 const DashboardFreeAgentTable = ({ user }: any): JSX.Element => {
+  const [addPlayers, setAddPlayers] = useState(false);
+  const addPlayerButtonText = addPlayers ? "FIN DE EDICIÓN" : "AÑADIR JUGADORES";
+
+  const toggleAddPlayers = (): void => {
+    setAddPlayers(!addPlayers);
+  };
+
   return (
     <>
-      <div className="dashboard-free-agent__table">
-        <table>
+      <button className="dashboard__add-players" onClick={toggleAddPlayers}>
+        {addPlayerButtonText}
+      </button>
+      {!addPlayers ? null : (
+        <div className="dashboard__free-agent">
+          <table>
           <thead>
             <tr>
               <th></th>
@@ -42,7 +56,8 @@ const DashboardFreeAgentTable = ({ user }: any): JSX.Element => {
             <tr className="dashboard__team-spacer"></tr>
           </tbody>
         </table>
-      </div>
+        </div>
+      )}
     </>
   );
 };

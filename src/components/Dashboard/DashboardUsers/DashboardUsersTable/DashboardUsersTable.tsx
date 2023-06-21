@@ -35,7 +35,7 @@ const DashboardUsersTable = ({ playersOnMyTeam }: any): JSX.Element => {
               <th>APELLIDOS</th>
               <th>EMAIL</th>
               <th>ROL</th>
-              {authInfo?.userRol === ROL.MANAGER ? <th>ELIMINAR</th> : null}
+              {authInfo?.userRol === ROL.MANAGER ? <th className="dashboard__team-delete-player-head">SACAR DEL EQUIPO</th> : null}
             </tr>
           </thead>
           <tbody>
