@@ -27,3 +27,7 @@ export interface UserResponse {
   team?: TeamResponse;
   image?: string;
 }
+
+export interface FullUser {
+  user: UserResponse;
+}

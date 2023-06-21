@@ -1,5 +1,5 @@
 import { AuthContext } from "../../App";
-import { ROL, UserResponse } from "../../models/User";
+import { ROL } from "../../models/User";
 import DashboardPlayerUser from "../Dashboard/DashboardPlayerUser/DashboardPlayerUser";
 import "./DashboardTable.scss";
 import React, { useContext } from "react";
@@ -11,15 +11,15 @@ import React, { useContext } from "react";
 //   role: string;
 // }
 
-const mockUser: UserResponse = {
-  _id: "xxx",
-  firstName: "Nombre",
-  lastName: "Apellidos",
-  email: "email@email.com",
-  rol: ROL.PLAYER,
-};
+// const mockUser: UserResponse = {
+//   _id: "xxx",
+//   firstName: "Nombre",
+//   lastName: "Apellidos",
+//   email: "email@email.com",
+//   rol: ROL.PLAYER,
+// };
 
-const DashboardPlayerTable = (): JSX.Element => {
+const DashboardPlayerTable = ({ playersOnMyTeam }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
 
   return (
@@ -35,19 +35,17 @@ const DashboardPlayerTable = (): JSX.Element => {
               <th>APELLIDOS</th>
               <th>EMAIL</th>
               <th>ROL</th>
-              {
-                authInfo?.userRol === ROL.MANAGER ? (
-                  <th>ELIMINAR</th>
-                ) : null
-              }
+              {authInfo?.userRol === ROL.MANAGER ? <th>ELIMINAR</th> : null}
             </tr>
           </thead>
           <tbody>
             <tr className="dashboard__team-spacer-x2"></tr>
-            <DashboardPlayerUser user={mockUser}></DashboardPlayerUser>
-            <DashboardPlayerUser user={mockUser}></DashboardPlayerUser>
-            <DashboardPlayerUser user={mockUser}></DashboardPlayerUser>
-            <DashboardPlayerUser user={mockUser}></DashboardPlayerUser>
+            {
+              playersOnMyTeam.map((user: any) => {
+                console.log(user);
+                return <DashboardPlayerUser key={user?._id} user={user}></DashboardPlayerUser>;
+              })
+            }
             <tr className="dashboard__team-spacer"></tr>
           </tbody>
         </table>

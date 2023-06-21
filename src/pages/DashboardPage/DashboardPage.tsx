@@ -17,7 +17,7 @@ const DashboardPage = (): JSX.Element => {
 
   const [user, setUser] = React.useState<UserResponse>()
   const [playersOnMyTeam, setPlayersOnMyTeam] = React.useState<UserResponse[]>([])
-  const [matchsOnMyTeam, setMatchsOnMyTeam] = React.useState<MatchResponse[]>([])
+  const [matchesOnMyTeam, setMatchesOnMyTeam] = React.useState<MatchResponse[]>([])
 
   React.useEffect(() => {
     fetchmMyProfile()
@@ -36,7 +36,7 @@ const DashboardPage = (): JSX.Element => {
     }).then(responseParsed => {
       setUser(responseParsed.user);
       setPlayersOnMyTeam(responseParsed.playersOnMyTeam);
-      setMatchsOnMyTeam(responseParsed.matchsOnMyTeam);
+      setMatchesOnMyTeam(responseParsed.matchsOnMyTeam);
     })
       .catch(error => {
         alert("Ha ocurrido un error en la petición")
@@ -49,9 +49,9 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           {/* Mi equipo */}
-          <DashboardTable></DashboardTable>
+          <DashboardTable playersOnMyTeam={playersOnMyTeam}></DashboardTable>
           {/* Mi calendario */}
-          <DashboardCalendar></DashboardCalendar>
+          <DashboardCalendar matchesOnMyTeam={matchesOnMyTeam}></DashboardCalendar>
         </>
       );
       break;
@@ -59,7 +59,7 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           {/* Mi equipo */}
-          <DashboardTable></DashboardTable>
+          {/* <DashboardTable></DashboardTable> */}
           {/* Agregar jugadores */}
           <DashboardFreeAgentTable></DashboardFreeAgentTable>
           {/* Mi calendario */}
@@ -71,7 +71,7 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           {/* Mi equipo */}
-          <DashboardTable></DashboardTable>
+          {/* <DashboardTable></DashboardTable> */}
           {/* Mi calendario */}
           <DashboardCalendar></DashboardCalendar>
         </>
@@ -81,7 +81,7 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           {/* Mi equipo */}
-          <DashboardTable></DashboardTable>
+          {/* <DashboardTable></DashboardTable> */}
           {/* Mi calendario */}
           <DashboardCalendar></DashboardCalendar>
         </>
@@ -90,7 +90,7 @@ const DashboardPage = (): JSX.Element => {
   }
 
   console.log("Here is the players and matches:")
-  console.log({ playersOnMyTeam, matchsOnMyTeam });
+  console.log({ playersOnMyTeam, matchesOnMyTeam });
 
   return (
     <div className="dashboard page">
@@ -98,7 +98,7 @@ const DashboardPage = (): JSX.Element => {
       <div className="dashboard__container">
         <div className="dashboard__left-column">
           {authInfo?.userToken && user &&
-          <DashboardProfile _id={user._id} firstName={user.firstName} lastName={user.lastName} email={user.email} rol={user.rol} image={user.image}></DashboardProfile>}
+          <DashboardProfile user={user}></DashboardProfile>}
         </div>
         <div className="dashboard__right-column">
           {content}
