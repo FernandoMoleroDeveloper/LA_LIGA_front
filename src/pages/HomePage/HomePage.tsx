@@ -78,7 +78,7 @@ const HomePage = (): JSX.Element => {
             <button className="home-page__box-btn" onClick={handlePreviousRound}>
               {"<"}
             </button>
-            <p>{currentRound}</p>
+            <p>JORNADA {currentRound}</p>
             <button className="home-page__box-btn" onClick={handleNextRound}>
               {">"}
             </button>
