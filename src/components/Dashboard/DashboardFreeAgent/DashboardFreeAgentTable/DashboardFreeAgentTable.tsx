@@ -1,4 +1,4 @@
-import DashboardPlayerUser from "../DashboardPlayerUser/DashboardPlayerUser";
+import DashboardPlayerUser from "../../DashboardUsers/DashboardUserRow/DashboardUserRow";
 import "./DashboardFreeAgentTable.scss";
 
 export interface MockFreeAgentInterface {
