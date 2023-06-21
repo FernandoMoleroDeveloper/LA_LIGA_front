@@ -18,7 +18,7 @@ const mockFreeAgent: MockFreeAgentInterface = {
   rol: "Jugador",
 };
 
-// Funcion que cambia el estado de addPlayers para mostrar la lista de jugadores a agregar
+// Funcion que cambia el estado de addPlayers para mostrar la lista de jugadores a agregar.
 
 const DashboardFreeAgentTable = ({ user }: any): JSX.Element => {
   const [addPlayers, setAddPlayers] = useState(false);
@@ -36,26 +36,26 @@ const DashboardFreeAgentTable = ({ user }: any): JSX.Element => {
       {!addPlayers ? null : (
         <div className="dashboard__free-agent">
           <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>NOMBRE</th>
-              <th>APELLIDOS</th>
-              <th>EMAIL</th>
-              <th>EQUIPO</th>
-              <th>ROL</th>
-              <th>ACCIONES</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="dashboard__team-spacer-x2"></tr>
-            <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
-            <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
-            <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
-            <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
-            <tr className="dashboard__team-spacer"></tr>
-          </tbody>
-        </table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>NOMBRE</th>
+                <th>APELLIDOS</th>
+                <th>EMAIL</th>
+                <th>EQUIPO</th>
+                <th>ROL</th>
+                <th>ACCIONES</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="dashboard__team-spacer-x2"></tr>
+              <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
+              <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
+              <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
+              <DashboardFreeAgentRow user={mockFreeAgent}></DashboardFreeAgentRow>
+              <tr className="dashboard__team-spacer"></tr>
+            </tbody>
+          </table>
         </div>
       )}
     </>
