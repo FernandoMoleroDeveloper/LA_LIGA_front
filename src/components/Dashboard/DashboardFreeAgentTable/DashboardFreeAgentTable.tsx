@@ -18,7 +18,7 @@ const mockFreeAgent: MockFreeAgentInterface = {
 const DashboardFreeAgentTable = ({ user }: any): JSX.Element => {
   return (
     <>
-      <div className="dashboard-player__team">
+      <div className="dashboard__team">
         <table>
           <thead>
             <tr>
@@ -30,12 +30,12 @@ const DashboardFreeAgentTable = ({ user }: any): JSX.Element => {
             </tr>
           </thead>
           <tbody>
-            <tr className="dashboard-player__team-spacer-x2"></tr>
+            <tr className="dashboard__team-spacer-x2"></tr>
             <DashboardPlayerUser user={mockFreeAgent}></DashboardPlayerUser>
             <DashboardPlayerUser user={mockFreeAgent}></DashboardPlayerUser>
             <DashboardPlayerUser user={mockFreeAgent}></DashboardPlayerUser>
             <DashboardPlayerUser user={mockFreeAgent}></DashboardPlayerUser>
-            <tr className="dashboard-player__team-spacer"></tr>
+            <tr className="dashboard__team-spacer"></tr>
           </tbody>
         </table>
       </div>

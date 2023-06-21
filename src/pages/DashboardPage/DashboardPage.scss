@@ -1,9 +1,9 @@
 @import "../../styles/utilities/variables";
 
-.dashboard-player {
+.dashboard {
   &__container {
     display: flex;
-    height: calc(100vh - 130px);
+    min-height: calc(100vh - 130px);
   }
 
   // Columna izquierda
@@ -214,12 +214,12 @@
 
     &-round {
         font-weight: bold;
-        width: 30%;
+        min-width: 30%;
     }
 
     &-teams {
         display: flex;
-        width: 40%;
+        min-width: 40%;
         text-align: center;
         align-items: center;
         justify-content: center;
@@ -239,12 +239,13 @@
         border-radius: 5px;
         padding: 5px 0px;
         margin: 0px 5px;
-        width: 150px;
+        max-width: 150px;
+        min-width: 150px;
         color: $font-color-text;
     }
 
     &-blank {
-        width: 30%;
+      min-width: 30%;
     }
   }
 }

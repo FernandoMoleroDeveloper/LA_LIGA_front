@@ -1,8 +1,7 @@
 import "./DashboardProfile.scss";
+import { FullUser } from "../../models/User";
 
-import { UserResponse } from "../../models/User";
-
-const DashboarProfile = (user: UserResponse): JSX.Element => {
+const DashboarProfile = ({ user }: FullUser): JSX.Element => {
   return (
     <>
       <p className="dashboard__profile"></p>
