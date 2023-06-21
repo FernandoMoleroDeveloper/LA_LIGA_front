@@ -9,16 +9,18 @@ import { AuthContext } from "../../App";
 import { ROL, UserResponse } from "../../models/User";
 import DashboardProfile from "../../components/Dashboard/DashboardProfile/DashboardProfile";
 import { MatchResponse } from "../../models/Match";
+import DashboardAdminButtons from "../../components/Dashboard/DashboardAdminButtons/DashboardAdminButtons";
+import DashboardTeamsTable from "../../components/Dashboard/DashboardTeams/DashboardTeamsTable/DashboardTeamsTable";
 
 const DashboardPage = (): JSX.Element => {
   const authInfo = useContext(AuthContext);
   const [roleColor, setRoleColor] = useState<string>("header");
-  let content;
-  const API_URL_PROFILE = `${process.env.REACT_APP_API_URL as string}/user/myuser`;
-
   const [user, setUser] = React.useState<UserResponse>();
   const [playersOnMyTeam, setPlayersOnMyTeam] = useState<UserResponse[]>([]);
   const [matchesOnMyTeam, setMatchesOnMyTeam] = useState<MatchResponse[]>([]);
+  const [activeTable, setActiveTable] = React.useState<"freeAgent" | "teams" | "calendar">("freeAgent");
+  let content;
+  const API_URL_PROFILE = `${process.env.REACT_APP_API_URL as string}/user/myuser`;
 
   useEffect(() => {
     fetchmMyProfile();
@@ -53,8 +55,6 @@ const DashboardPage = (): JSX.Element => {
       })
       .then((responseParsed) => {
         setUser(responseParsed.user);
-        console.log("Aqui la respuesta completa:");
-        console.log(responseParsed);
         setPlayersOnMyTeam(responseParsed.playersOnMyTeam);
         setMatchesOnMyTeam(responseParsed.matchsOnMyTeam);
       })
@@ -90,10 +90,10 @@ const DashboardPage = (): JSX.Element => {
     case ROL.ADMIN:
       content = (
         <>
-          {/* Mi equipo */}
-          {/* <DashboardUsersTable></DashboardUsersTable> */}
-          {/* Mi calendario */}
-          <DashboardCalendarTable></DashboardCalendarTable>
+          <DashboardAdminButtons setActiveTable={setActiveTable} />
+          {activeTable === "freeAgent" && <DashboardFreeAgentTable />}
+          {activeTable === "teams" && <DashboardTeamsTable />}
+          {activeTable === "calendar" && <DashboardCalendarTable />}
         </>
       );
       break;

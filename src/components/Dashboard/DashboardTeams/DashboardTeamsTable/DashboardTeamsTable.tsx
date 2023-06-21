@@ -1,7 +1,7 @@
 import { AuthContext } from "../../../../App";
 import { ROL } from "../../../../models/User";
 import DashboardUserRow from "../DashboardTeamRow/DashboardTeamRow";
-import "./DashboardUsersTable.scss";
+import "./DashboardTeamsTable.scss";
 import React, { useContext } from "react";
 
 // export interface MockUserInterface {
@@ -19,7 +19,7 @@ import React, { useContext } from "react";
 //   rol: ROL.PLAYER,
 // };
 
-const DashboardUsersTable = ({ playersOnMyTeam }: any): JSX.Element => {
+const DashboardTeamsTable = ({ playersOnMyTeam }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
 
   return (
@@ -40,12 +40,10 @@ const DashboardUsersTable = ({ playersOnMyTeam }: any): JSX.Element => {
           </thead>
           <tbody>
             <tr className="dashboard__team-spacer-x2"></tr>
-            {
-              playersOnMyTeam.map((user: any) => {
-                console.log(user);
-                return <DashboardUserRow key={user?._id} user={user}></DashboardUserRow>;
-              })
-            }
+            {playersOnMyTeam.map((user: any) => {
+              console.log(user);
+              return <DashboardUserRow key={user?._id} user={user}></DashboardUserRow>;
+            })}
             <tr className="dashboard__team-spacer"></tr>
           </tbody>
         </table>
@@ -54,4 +52,4 @@ const DashboardUsersTable = ({ playersOnMyTeam }: any): JSX.Element => {
   );
 };
 
-export default DashboardUsersTable;
+export default DashboardTeamsTable;
