@@ -1,0 +1,180 @@
+@import "../../styles/utilities/variables";
+
+.home-page {
+  &__containers {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 40px;
+    max-width: 100%;
+    position: relative;
+    top: -250px;
+  }
+
+  &__spacer {
+    height: 10px;
+  }
+
+  &__image {
+    width: 100%;
+    border-bottom: 10px solid black;
+  }
+
+  &__box {
+    display: flex;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: $background-player;
+    width: 475px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto 50px;
+    box-shadow: 1px 5px 10px $misc-clear;
+
+    &-title {
+      background-color: $font-color-dark;
+      font-size: 17px;
+      color: $font-color-light;
+      text-align: center;
+      border-radius: 10px;
+      width: 100%;
+      padding: 10px;
+      margin: 0px;
+    }
+
+    &-subtitle {
+      background-color: $font-color-light;
+      font-size: 14px;
+      font-weight: 300;
+      color: $font-color-dark;
+      text-align: center;
+      border-radius: 10px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0px auto 5px;
+    }
+
+    &-btn {
+      margin: 5px;
+      font-size: 21px;
+    }
+  }
+  & table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    border-spacing: 5px 5px;
+  }
+
+  & tbody td:first-child {
+    border-radius: 5px;
+  }
+
+  & tbody td:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+
+  & thead th:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+
+  & thead th:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+
+  & th {
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    background-color: $background-generic;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0px;
+    align-items: center;
+    // padding-left: 30px;
+  }
+
+  & thead tr:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+
+  & thead tr:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+
+  &__table {
+    border-collapse: collapse;
+    width: 100%;
+
+    &-number {
+      background-color: $font-color-dark;
+      font-size: 14px;
+      font-weight: 600;
+      color: $font-color-light;
+      text-align: center;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    &-row {
+      background-color: $font-color-light;
+      font-size: 14px;
+      font-weight: 300;
+      color: $font-color-dark;
+      text-align: center;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px auto;
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    &-clas {
+      background-color: $font-color-light;
+      font-size: 14px;
+      font-weight: 300;
+      color: $font-color-dark;
+      text-align: center;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px auto;
+      align-items: center;
+    }
+
+    &-team {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+    }
+
+    &-score {
+      background-color: $background-scores;
+      font-size: 14px;
+      font-weight: 300;
+      color: $font-color-scores;
+      text-align: center;
+      border-radius: 8px;
+      width: 134px;
+      margin: 0 auto;
+      padding: 8px;
+    }
+
+    &-spacer {
+      background-color: $background-player;
+      height: 5px;
+    }
+  }
+
+  &__team-img {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+  }
+}

@@ -1,0 +1,26 @@
+@import "../../../styles/utilities/variables";
+
+.admin-create-team {
+  &__form {
+    display: flex;
+    flex-direction: row;
+
+    &-input {
+      border: none;
+    }
+  }
+
+  &__box {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    border-spacing: 5px 5px;
+  }
+
+  &__container {
+    color: $font-color-text;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+  }
+}
