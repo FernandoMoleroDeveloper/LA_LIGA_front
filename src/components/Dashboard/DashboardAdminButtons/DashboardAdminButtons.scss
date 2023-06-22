@@ -17,4 +17,10 @@
   &__areas:hover {
     background-color: $misc-accent;
   }
+
+  &__form-submit {
+    color: darkorchid;
+    font-size: 14px;
+    text-decoration: underline;
+  }
 }

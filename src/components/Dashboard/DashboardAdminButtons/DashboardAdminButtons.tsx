@@ -1,7 +1,7 @@
 import "./DashboardAdminButtons.scss";
 
 interface DashboardAdminButtonsProps {
-  setActiveTable: (table: "freeAgent" | "teams" | "calendar") => void;
+  setActiveTable: (table: "users" | "teams" | "calendar") => void;
 }
 
 const DashboardAdminButtons: React.FC<DashboardAdminButtonsProps> = ({ setActiveTable }): JSX.Element => {
@@ -10,7 +10,7 @@ const DashboardAdminButtons: React.FC<DashboardAdminButtonsProps> = ({ setActive
       <button
         className="admin-btn__areas"
         onClick={() => {
-          setActiveTable("freeAgent");
+          setActiveTable("users");
         }}
       >
         USUARIOS
