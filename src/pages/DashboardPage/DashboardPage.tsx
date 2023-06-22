@@ -33,7 +33,6 @@ const DashboardPage = (): JSX.Element => {
   // const API_URL_ALL_USER_BY_ID_TEAM = `${process.env.REACT_APP_API_URL as string}/user/by-team/:id`;
   const API_URL_USERS = `${process.env.REACT_APP_API_URL as string}/user`;
 
-
   useEffect(() => {
     fetchMyProfile();
     getMyTeamPlayerList();
@@ -86,70 +85,70 @@ const DashboardPage = (): JSX.Element => {
       });
   };
 
- // Obtiene los jugadores el equipo del usuario logado
+  // Obtiene los jugadores el equipo del usuario logado
   const getMyTeamPlayerList = (): void => {
     fetch(API_URL_PROFILE, {
-        headers: {
-            Authorization: `Bearer ${authInfo?.userToken as string}`,
-          },
-        })
-          .then(async (response) => {
-            if (response.status !== 200) {
-              alert("Ha ocurrido un error en la petición al servidor.");
-            }
-            return await response.json();
-          })
-          .then((responseParsed) => {
-            setMyTeamPlayerList(responseParsed.playersOnMyTeam);
-        })
-        .catch((error) => {
-          alert("Ha ocurrido un error en la petición en el codigo.");
-          console.error(error);
-        });
-    };
-  
-    // Obtiene los jugadores el equipo del usuario logado
-    const getFreeAgentList = (): void => {
-      fetch(API_URL_FREE_AGENTS, {
-        headers: {
-          Authorization: `Bearer ${authInfo?.userToken as string}`,
-        },
+      headers: {
+        Authorization: `Bearer ${authInfo?.userToken as string}`,
+      },
+    })
+      .then(async (response) => {
+        if (response.status !== 200) {
+          alert("Ha ocurrido un error en la petición al servidor.");
+        }
+        return await response.json();
       })
-        .then(async (response) => {
-          if (response.status !== 200) {
-            alert("Ha ocurrido un error en la petición getFreeAgentList");
-          }
-          return await response.json();
-        })
-        .then((responseParsed) => {
-          setFreeAgentList(responseParsed);
-        })
-        .catch((error) => {
+      .then((responseParsed) => {
+        setMyTeamPlayerList(responseParsed.playersOnMyTeam);
+      })
+      .catch((error) => {
+        alert("Ha ocurrido un error en la petición en el codigo.");
+        console.error(error);
+      });
+  };
+
+  // Obtiene los jugadores del equipo del usuario logado
+  const getFreeAgentList = (): void => {
+    fetch(API_URL_FREE_AGENTS, {
+      headers: {
+        Authorization: `Bearer ${authInfo?.userToken as string}`,
+      },
+    })
+      .then(async (response) => {
+        if (response.status !== 200) {
           alert("Ha ocurrido un error en la petición getFreeAgentList");
-          console.error(error);
+        }
+        return await response.json();
+      })
+      .then((responseParsed) => {
+        setFreeAgentList(responseParsed);
+      })
+      .catch((error) => {
+        alert("Ha ocurrido un error en la petición getFreeAgentList");
+        console.error(error);
       });
   };
 
   const fetchUsersAdmin = (): void => {
     fetch(API_URL_USERS, {
-        headers: {
-            Authorization: `Bearer ${authInfo?.userToken as string}`,
-          },
-        })
-          .then(async (response) => {
-            if (response.status !== 200) {
-              alert("Ha ocurrido un error en la petición al servidor.");
-            }
-            return await response.json();
-          })
-          .then((responseParsed) => {
-            setUserAdmin(responseParsed.data);
-            console.log("lola", responseParsed.data);
-          })
-          .catch((error) => {
-            alert("Ha ocurrido un error en la petición");
+      headers: {
+        Authorization: `Bearer ${authInfo?.userToken as string}`,
+      },
+    })
+      .then(async (response) => {
+        if (response.status !== 200) {
+          alert("Ha ocurrido un error en la petición al servidor.");
+        }
+        return await response.json();
+      })
+      .then((responseParsed) => {
+        setUserAdmin(responseParsed.data);
+        console.log("lola", responseParsed.data);
+      })
+      .catch((error) => {
+        alert("Ha ocurrido un error en la petición");
 
-            console.error(error);
+        console.error(error);
       });
   };
 
