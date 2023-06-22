@@ -1,21 +1,20 @@
 // import { useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import "./DashboardAdminCreateTeam.scss";
 import { AuthContext } from "../../../App";
 import React, { useContext, useRef } from "react";
+import { ROL } from "../../../models/User";
 
 const API_URL_NEW_TEAM = `${process.env.REACT_APP_API_URL as string}/team`;
 
 interface NewTeamInfo {
   name: string;
-  alias: string;
+  initials: string;
 }
 
 const DashboardAdminCreateTeam = (): JSX.Element => {
   const authInfo = useContext(AuthContext);
   const nameRef = useRef<HTMLInputElement>(null);
-  const aliasRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate(); // Obtener la función navigate
+  const initialsRef = useRef<HTMLInputElement>(null);
 
   const submitForm = (event: React.FormEvent): void => {
     //
@@ -23,11 +22,11 @@ const DashboardAdminCreateTeam = (): JSX.Element => {
 
     const newTeamInfo: NewTeamInfo = {
       name: nameRef?.current?.value as string,
-      alias: aliasRef?.current?.value as string,
+      initials: initialsRef?.current?.value as string,
     };
 
-    if (!newTeamInfo.name || !newTeamInfo.alias) {
-      alert("Email y la contraseña son obligatorios!");
+    if (!newTeamInfo.name || !newTeamInfo.initials) {
+      alert("Nombre y initials son obligatorios!");
     } else {
       doLoginRequest(newTeamInfo);
     }
@@ -37,20 +36,20 @@ const DashboardAdminCreateTeam = (): JSX.Element => {
     fetch(API_URL_NEW_TEAM, {
       method: "POST",
       body: JSON.stringify(newTeamInfo),
-      headers: { "Content-type": "application/json; charset=UTF-8" },
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${authInfo?.userToken as string}`,
+      },
     })
       .then(async (response) => {
-        if (response.status !== 200) {
+        if (response.status !== 201) {
           alert("Login incorrecto");
         }
         return await response.json();
       })
       .then((data) => {
-        // Login OK -> Guardamos las credenciales
-        if (data.token && data.rol && authInfo.logIn) {
-          authInfo.logIn(data.token, data.rol);
-          navigate("/dashboard");
-        }
+        alert("Equipo creado correctamente");
       })
       .catch((error) => {
         console.error(error);
@@ -59,17 +58,19 @@ const DashboardAdminCreateTeam = (): JSX.Element => {
   };
 
   return (
-    <div className="admin-create-team__container">
+    <div className="dashboard__team">
       <div className="admin-create-team__box">
-        <form onSubmit={submitForm} className="admin-create-team__form">
-          <label className="admin-create-team__form-label" htmlFor="name"></label>
-          <input ref={nameRef} className="admin-create-team__form-input" type="text" id="name" placeholder="Introduce nombre..." />
-          <label className="admin-create-team__form-label" htmlFor="alias"></label>
-          <input ref={aliasRef} className="admin-create-team__form-input" type="text" id="alias" placeholder="Introduce alias..." />
-          <button className="admin-create-team__form-submit" type="submit" title="LogIn">
-            AÑADIR
-          </button>
-        </form>
+        {authInfo?.userRol === ROL.ADMIN ? (
+          <form onSubmit={submitForm} className="admin-create-team__form">
+            <label className="admin-create-team__form-label" htmlFor="name"></label>
+            <input ref={nameRef} className="admin-create-team__form-input" type="text" id="name" placeholder="Introduce nombre..." />
+            <label className="admin-create-team__form-label" htmlFor="initials"></label>
+            <input ref={initialsRef} className="admin-create-team__form-input" type="text" id="initials" placeholder="Introduce Alias..." />
+            <button className="admin-create-team__form-submit" type="submit" title="LogIn">
+              AÑADIR
+            </button>
+          </form>
+        ) : null}
       </div>
     </div>
   );
