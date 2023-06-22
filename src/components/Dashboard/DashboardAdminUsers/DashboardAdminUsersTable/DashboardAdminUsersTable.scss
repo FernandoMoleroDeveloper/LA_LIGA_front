@@ -1,6 +1,20 @@
 @import "../../../../styles/utilities/variables";
 
-.dashoard {
+.dashoard-admin {
+  &__input {
+    border: none;
+    color: $font-color-dark;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: bold;
+    color: $font-color-scores;
+    margin-bottom: 20px;
+  }
+
   & table {
     width: 100%;
     text-align: left;
