@@ -4,6 +4,10 @@
   &__form {
     display: flex;
     flex-direction: row;
+
+    &-input {
+      border: none;
+    }
   }
 
   &__box {
