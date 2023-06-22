@@ -17,16 +17,24 @@ const DashboardPage = (): JSX.Element => {
   const authInfo = useContext(AuthContext);
   const [roleColor, setRoleColor] = useState<string>("header");
   const [user, setUser] = React.useState<UserResponse>();
-  const [playersOnMyTeam, setPlayersOnMyTeam] = useState<UserResponse[]>([]);
+  // const [playersOnMyTeam, setPlayersOnMyTeam] = useState<UserResponse[]>([]);
+  const [myTeamPlayerList, setMyTeamPlayerList] = useState<UserResponse[]>([]);
+  const [freeAgentList, setFreeAgentList] = useState<UserResponse[]>([]);
   const [matchesOnMyTeam, setMatchesOnMyTeam] = useState<MatchResponse[]>([]);
   const [teamsAdmin, setTeamsAdmin] = useState<TeamResponse[]>([]);
   const [activeTable, setActiveTable] = React.useState<"freeAgent" | "teams" | "calendar">("freeAgent");
   let content;
   const API_URL_PROFILE = `${process.env.REACT_APP_API_URL as string}/user/myuser`;
   const API_URL_TEAMS = `${process.env.REACT_APP_API_URL as string}/team`;
+  const API_URL_FREE_AGENTS = `${process.env.REACT_APP_API_URL as string}/user/no-team`;
 
   useEffect(() => {
-    fetchmMyProfile();
+    fetchMyProfile();
+    getMyTeamPlayerList();
+    if (authInfo.userRol === ROL.MANAGER) {
+      getFreeAgentList();
+    }
+
     if (authInfo.userRol === ROL.ADMIN) {
       fetchTeamsAdmin();
     }
@@ -47,7 +55,7 @@ const DashboardPage = (): JSX.Element => {
     }
   }, [authInfo?.userRol]);
 
-  const fetchmMyProfile = (): void => {
+  const fetchMyProfile = (): void => {
     fetch(API_URL_PROFILE, {
       headers: {
         Authorization: `Bearer ${authInfo?.userToken as string}`,
@@ -61,11 +69,55 @@ const DashboardPage = (): JSX.Element => {
       })
       .then((responseParsed) => {
         setUser(responseParsed.user);
-        setPlayersOnMyTeam(responseParsed.playersOnMyTeam);
+        // setPlayersOnMyTeam(responseParsed.playersOnMyTeam);
         setMatchesOnMyTeam(responseParsed.matchsOnMyTeam);
       })
       .catch((error) => {
         alert("Ha ocurrido un error en la petición");
+        console.error(error);
+      });
+  };
+
+  // Obtiene los jugadores el equipo del usuario logado
+  const getMyTeamPlayerList = (): void => {
+    fetch(API_URL_PROFILE, {
+      headers: {
+        Authorization: `Bearer ${authInfo?.userToken as string}`,
+      },
+    })
+      .then(async (response) => {
+        if (response.status !== 200) {
+          alert("Ha ocurrido un error en la petición al servidor.");
+        }
+        return await response.json();
+      })
+      .then((responseParsed) => {
+        setMyTeamPlayerList(responseParsed.playersOnMyTeam);
+      })
+      .catch((error) => {
+        alert("Ha ocurrido un error en la petición en el codigo.");
+        console.error(error);
+      });
+  };
+
+  // Obtiene los jugadores el equipo del usuario logado
+  const getFreeAgentList = (): void => {
+    fetch(API_URL_FREE_AGENTS, {
+      headers: {
+        Authorization: `Bearer ${authInfo?.userToken as string}`,
+      },
+    })
+      .then(async (response) => {
+        if (response.status !== 200) {
+          alert("Ha ocurrido un error en la petición getFreeAgentList");
+        }
+        return await response.json();
+      })
+      .then((responseParsed) => {
+        setFreeAgentList(responseParsed);
+      })
+      .catch((error) => {
+        alert("Ha ocurrido un error en la petición getFreeAgentList");
         console.error(error);
       });
   };
@@ -96,7 +148,7 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           {/* Mi equipo */}
-          <DashboardUsersTable playersOnMyTeam={playersOnMyTeam}></DashboardUsersTable>
+          <DashboardUsersTable myTeamPlayerList={myTeamPlayerList}></DashboardUsersTable>
           {/* Mi calendario */}
           <DashboardCalendarTable matchesOnMyTeam={matchesOnMyTeam}></DashboardCalendarTable>
         </>
@@ -106,9 +158,9 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           {/* Mi equipo */}
-          <DashboardUsersTable playersOnMyTeam={playersOnMyTeam}></DashboardUsersTable>
+          <DashboardUsersTable myTeamPlayerList={myTeamPlayerList} getMyTeamPlayerList={getMyTeamPlayerList} getFreeAgentList={getFreeAgentList}></DashboardUsersTable>
           {/* Agregar jugadores */}
-          <DashboardFreeAgentTable myTeam={user?.team}></DashboardFreeAgentTable>
+          <DashboardFreeAgentTable myTeam={user?.team} fetchMyProfile={fetchMyProfile} freeAgentList={freeAgentList} getMyTeamPlayerList={getMyTeamPlayerList} getFreeAgentList={getFreeAgentList}></DashboardFreeAgentTable>
           {/* Mi calendario */}
           <DashboardCalendarTable matchesOnMyTeam={matchesOnMyTeam}></DashboardCalendarTable>
         </>
@@ -135,9 +187,6 @@ const DashboardPage = (): JSX.Element => {
       );
       break;
   }
-
-  console.log("Here is the players and matches:");
-  console.log({ playersOnMyTeam, matchesOnMyTeam });
 
   return (
     <div className="dashboard page">

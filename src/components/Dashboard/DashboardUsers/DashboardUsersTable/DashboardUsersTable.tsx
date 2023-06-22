@@ -4,22 +4,7 @@ import DashboardUserRow from "../DashboardUserRow/DashboardUserRow";
 import "./DashboardUsersTable.scss";
 import React, { useContext } from "react";
 
-// export interface MockUserInterface {
-//   name: string;
-//   surname: string;
-//   email: string;
-//   role: string;
-// }
-
-// const mockUser: UserResponse = {
-//   _id: "xxx",
-//   firstName: "Nombre",
-//   lastName: "Apellidos",
-//   email: "email@email.com",
-//   rol: ROL.PLAYER,
-// };
-
-const DashboardUsersTable = ({ playersOnMyTeam, myTeam }: any): JSX.Element => {
+const DashboardUsersTable = ({ fetchMyProfile, myTeamPlayerList, getMyTeamPlayerList, getFreeAgentList }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
 
   return (
@@ -40,12 +25,10 @@ const DashboardUsersTable = ({ playersOnMyTeam, myTeam }: any): JSX.Element => {
           </thead>
           <tbody>
             <tr className="dashboard__team-spacer-x2"></tr>
-            {
-              playersOnMyTeam.map((user: any) => {
-                console.log(user);
-                return <DashboardUserRow key={user?._id} user={user}></DashboardUserRow>;
-              })
-            }
+            {myTeamPlayerList.map((user: any) => {
+              console.log(user);
+              return <DashboardUserRow key={user?._id} user={user} fetchMyProfile={fetchMyProfile} getMyTeamPlayerList={getMyTeamPlayerList} getFreeAgentList={getFreeAgentList}></DashboardUserRow>;
+            })}
             <tr className="dashboard__team-spacer"></tr>
           </tbody>
         </table>
