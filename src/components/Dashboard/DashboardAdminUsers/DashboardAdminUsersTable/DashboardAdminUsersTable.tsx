@@ -10,6 +10,7 @@ interface NewUser {
   firstName: string;
   lastName: string;
   email: string;
+  password: string;
 }
 
 const DashboardAdminUsersTable = ({ userAdmin }: any): JSX.Element => {
@@ -17,6 +18,7 @@ const DashboardAdminUsersTable = ({ userAdmin }: any): JSX.Element => {
   const firstnameRef = useRef<HTMLInputElement>(null);
   const lastnameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const submitForm = (event: React.FormEvent): void => {
     //
@@ -26,6 +28,7 @@ const DashboardAdminUsersTable = ({ userAdmin }: any): JSX.Element => {
       firstName: firstnameRef?.current?.value as string,
       lastName: lastnameRef?.current?.value as string,
       email: emailRef?.current?.value as string,
+      password: passwordRef?.current?.value as string,
     };
 
     if (!newUser.firstName || !newUser.lastName || !newUser.email) {
@@ -46,7 +49,7 @@ const DashboardAdminUsersTable = ({ userAdmin }: any): JSX.Element => {
       },
     })
       .then(async (response) => {
-        if (response.status !== 200) {
+        if (response.status !== 201) {
           alert("Login incorrecto");
         }
         return await response.json();
@@ -59,12 +62,12 @@ const DashboardAdminUsersTable = ({ userAdmin }: any): JSX.Element => {
   };
   return (
     <>
-      <div className="dashboard__team">
+      <div className="dashboard-admin__team">
         <table>
           <thead>
             <tr>
               <th>
-                <div className="dashboard__team-title">USUARIOS</div>
+                <div className="dashboard-admin__team-title">USUARIOS</div>
               </th>
               <th>NOMBRE</th>
               <th>APELLIDOS</th>
@@ -76,36 +79,28 @@ const DashboardAdminUsersTable = ({ userAdmin }: any): JSX.Element => {
             </tr>
           </thead>
           <tbody>
-            <tr className="dashboard__team-spacer-x2"></tr>
+            <tr className="dashboard-admin__team-spacer-x2"></tr>
             {userAdmin?.map((user: any) => {
               console.log("pepe", user);
               return <DashboardAdminUsersRow key={user?._id} user={user}></DashboardAdminUsersRow>;
             })}
-            <tr className="dashboard__team-spacer"></tr>
+            <tr className="dashboard-admin__team-spacer"></tr>
           </tbody>
         </table>
       </div>
-      <p>AÑADIR JUGADORES</p>
-      <div className="dashboard__team">
-        <table>
-          <tbody>
-            {authInfo?.userRol === ROL.ADMIN ? (
-              <tr className="dashboard__team-delete-player-head">
-                <form onSubmit={submitForm} className="admin-create-team__form">
-                  <label className="admin-create-team__form-label" htmlFor="firstname"></label>
-                  <input ref={firstnameRef} className="admin-create-team__form-input" type="text" id="firstname" placeholder="Introduce nombre..." />
-                  <label className="admin-create-team__form-label" htmlFor="lastname"></label>
-                  <input ref={lastnameRef} className="admin-create-team__form-input" type="text" id="lastname" placeholder="Introduce apellidos..." />
-                  <label className="admin-create-team__form-label" htmlFor="lastname"></label>
-                  <input ref={emailRef} className="admin-create-team__form-input" type="text" id="lastname" placeholder="Introduce email..." />
-                  <button className="admin-create-team__form-submit" type="submit" title="LogIn">
-                    AÑADIR
-                  </button>
-                </form>
-              </tr>
-            ) : null}
-          </tbody>
-        </table>
+      <p className="dashboard-admin__title">NUEVO USUARIO</p>
+      <div className="dashboard-admin__team">
+        {authInfo?.userRol === ROL.ADMIN ? (
+          <form onSubmit={submitForm} className="dashboard-admin__row">
+            <input ref={firstnameRef} className="dashboard-admin__input" type="text" placeholder="Introduce nombre..." />
+            <input ref={lastnameRef} className="dashboard-admin__input" type="text" placeholder="Introduce apellidos..." />
+            <input ref={emailRef} className="dashboard-admin__input" type="text" placeholder="Introduce email..." />
+            <input ref={passwordRef} className="dashboard-admin__input" type="text" placeholder="Introduce password..." />
+            <button className="dashboard-admin__form-submit" type="submit" title="LogIn">
+              AÑADIR
+            </button>
+          </form>
+        ) : null}
       </div>
     </>
   );
