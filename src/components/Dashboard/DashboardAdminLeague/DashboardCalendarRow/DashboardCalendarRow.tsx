@@ -13,7 +13,6 @@ const DashboardCalendarRow = ({ match }: any): JSX.Element => {
         <td className="dashboard__matches-row">
           <div className="dashboard__matches-details">
             <div className="dashboard__matches-round">
-              JORNADA {match.round} | {new Date(match.date).toLocaleString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" })}
             </div>
             <div className="dashboard__matches-teams">
               <span className="dashboard__matches-name">{match.localTeam.initials}</span>
