@@ -24,7 +24,7 @@ const DashboardCalendarTable = ({ matchesOnMyTeam, updatedGoalsMatch }: Dashboar
 
   useEffect(() => {
     getMatchs();
-  }, []);
+  }, [matchesOnMyTeam]);
 
   return (
     <>
