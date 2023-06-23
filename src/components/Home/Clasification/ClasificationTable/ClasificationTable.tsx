@@ -20,6 +20,7 @@ const ClasificationTeamTable = (teams: ClasificationTeamTableProps): JSX.Element
         </tr>
       </thead>
       <tbody>
+        <tr className="home-page__spacer"></tr>
         {
         teams.teams.map((team: TeamClasificationResponse) => {
           return <>
