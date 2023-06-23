@@ -23,14 +23,14 @@ const DashboardPage = (): JSX.Element => {
   // const [playersOnMyTeam, setPlayersOnMyTeam] = useState<UserResponse[]>([]);
   const [myTeamPlayerList, setMyTeamPlayerList] = useState<UserResponse[]>([]);
   const [freeAgentList, setFreeAgentList] = useState<UserResponse[]>([]);
-  // const [userAdmin, setUserAdmin] = React.useState<UserResponse>();
+  const [usersAdminList, setUsersAdminList] = React.useState<UserResponse>();
   const [matchesOnMyTeam, setMatchesOnMyTeam] = useState<MatchResponse[]>([]);
   const [teamsAdmin, setTeamsAdmin] = useState<TeamResponse[]>([]);
   const [activeTable, setActiveTable] = React.useState<"users" | "teams" | "calendar">("users");
   const API_URL_PROFILE = `${process.env.REACT_APP_API_URL as string}/user/myuser`;
   const API_URL_TEAMS = `${process.env.REACT_APP_API_URL as string}/team`;
   const API_URL_FREE_AGENTS = `${process.env.REACT_APP_API_URL as string}/user/no-team`;
-  // const API_URL_USERS = `${process.env.REACT_APP_API_URL as string}/user`;
+  const API_URL_ALL_USERS = `${process.env.REACT_APP_API_URL as string}/user/?page=1&limit=100`;
   let content;
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const DashboardPage = (): JSX.Element => {
 
     if (authInfo.userRol === ROL.ADMIN) {
       fetchTeamsAdmin();
-      // fetchUsersAdmin();
+      getUsersAdminList();
       // fetchManagerTeam();
     }
 
@@ -133,27 +133,27 @@ const DashboardPage = (): JSX.Element => {
       });
   };
 
-  // const fetchUsersAdmin = (): void => {
-  //   fetch(API_URL_USERS, {
-  //     headers: {
-  //       Authorization: `Bearer ${authInfo?.userToken as string}`,
-  //     },
-  //   })
-  //     .then(async (response) => {
-  //       if (response.status !== 200) {
-  //         alert("Ha ocurrido un error en la petición al servidor.");
-  //       }
-  //       return await response.json();
-  //     })
-  //     .then((responseParsed) => {
-  //       setUserAdmin(responseParsed.data);
-  //     })
-  //     .catch((error) => {
-  //       alert("Ha ocurrido un error en la petición");
+  const getUsersAdminList = (): void => {
+    fetch(API_URL_ALL_USERS, {
+      headers: {
+        Authorization: `Bearer ${authInfo?.userToken as string}`,
+      },
+    })
+      .then(async (response) => {
+        if (response.status !== 200) {
+          alert("Ha ocurrido un error en la petición al servidor.");
+        }
+        return await response.json();
+      })
+      .then((responseParsed) => {
+        setUsersAdminList(responseParsed.data);
+      })
+      .catch((error) => {
+        alert("Ha ocurrido un error en la petición");
 
-  //       console.error(error);
-  //     });
-  // };
+        console.error(error);
+      });
+  };
 
   const fetchTeamsAdmin = (): void => {
     fetch(API_URL_TEAMS, {
@@ -202,8 +202,8 @@ const DashboardPage = (): JSX.Element => {
     case ROL.ADMIN:
       content = (
         <>
-          <DashboardAdminButtons setActiveTable={setActiveTable} />
-          {activeTable === "users" && <DashboardAdminUsersTable freeAgentList={freeAgentList} getFreeAgentList={getFreeAgentList}></DashboardAdminUsersTable>}
+          <DashboardAdminButtons setActiveTable={setActiveTable}></DashboardAdminButtons>
+          {activeTable === "users" && <DashboardAdminUsersTable usersAdminList={usersAdminList} getUsersAdminList={getUsersAdminList}></DashboardAdminUsersTable>}
           {activeTable === "teams" && <DashboardTeamsAdminTable teamsAdmin={teamsAdmin}></DashboardTeamsAdminTable>}
           {activeTable === "calendar" && <DashboardAdminLeague />}
         </>

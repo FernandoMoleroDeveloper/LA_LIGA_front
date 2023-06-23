@@ -6,7 +6,7 @@ import React, { useContext, useRef, useEffect } from "react";
 
 const API_URL_NEW_USER = `${process.env.REACT_APP_API_URL as string}/user`;
 
-const DashboardAdminUsersTable = ({ freeAgentList, getFreeAgentList }: any): JSX.Element => {
+const DashboardAdminUsersTable = ({ usersAdminList, getUsersAdminList }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
   const firstnameRef = useRef<HTMLInputElement>(null);
   const lastnameRef = useRef<HTMLInputElement>(null);
@@ -15,7 +15,7 @@ const DashboardAdminUsersTable = ({ freeAgentList, getFreeAgentList }: any): JSX
   const rolRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    getFreeAgentList();
+    getUsersAdminList();
   }, []);
 
   const submitForm = async (event: React.FormEvent): Promise<void> => {
@@ -67,7 +67,7 @@ const DashboardAdminUsersTable = ({ freeAgentList, getFreeAgentList }: any): JSX
         return await response.json();
       })
       .then(async () => {
-        await getFreeAgentList();
+        await getUsersAdminList();
       })
       .catch((error) => {
         console.error(error);
@@ -95,8 +95,8 @@ const DashboardAdminUsersTable = ({ freeAgentList, getFreeAgentList }: any): JSX
           </thead>
           <tbody>
             <tr className="dashboard-admin__team-spacer-x2"></tr>
-            {freeAgentList?.map((user: any) => {
-              return <DashboardAdminUsersRow key={user?._id} user={user}></DashboardAdminUsersRow>;
+            {usersAdminList?.map((user: any) => {
+              return <DashboardAdminUsersRow key={user?._id} user={user} getUsersAdminList={getUsersAdminList}></DashboardAdminUsersRow>;
             })}
             <tr className="dashboard-admin__team-spacer"></tr>
           </tbody>
