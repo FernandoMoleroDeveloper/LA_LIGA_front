@@ -3,6 +3,7 @@ import { AuthContext } from "../../../App";
 import DashboardCalendarTable from "./DashboardCalendarTable/DashboardCalendarTable";
 import { MatchResponse } from "../../../models/Match";
 
+const actualDate = "1/8/23"
 const API_URL_GENERATE_LEAGUE = `${process.env.REACT_APP_API_URL as string}/match/generate-league`;
 
 const DashboardAdminLeague = (): JSX.Element => {
@@ -17,7 +18,7 @@ const DashboardAdminLeague = (): JSX.Element => {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${authInfo?.userToken as string}`,
       },
-      body: JSON.stringify({ startDate: "22/05/22" }),
+      body: JSON.stringify({ startDate: actualDate }),
     })
       .then(async (response) => {
         if (response.status !== 200) {
