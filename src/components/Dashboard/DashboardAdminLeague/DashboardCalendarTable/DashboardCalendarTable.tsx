@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
-import { MatchResponse } from "../../../../models/Match";
+import { GoalsMatch, MatchResponse } from "../../../../models/Match";
 import DashboardCalendarRow from "../DashboardCalendarRow/DashboardCalendarRow";
 
-const DashboardCalendarTable = ({ matchesOnMyTeam }: any): JSX.Element => {
+interface DashboardCalendarTableProps {
+  matchesOnMyTeam: MatchResponse[];
+  updatedGoalsMatch: (goalsMatch: GoalsMatch) => void;
+}
+
+const DashboardCalendarTable = ({ matchesOnMyTeam, updatedGoalsMatch }: DashboardCalendarTableProps): JSX.Element => {
   const [filteredMatchs, setFilteredMatchs] = useState<any>(null);
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const getMatchs = () => {
@@ -36,7 +41,15 @@ const DashboardCalendarTable = ({ matchesOnMyTeam }: any): JSX.Element => {
             {filteredMatchs &&
               Object.keys(filteredMatchs).map((key) => {
                 const matchs = filteredMatchs[key].map((match: MatchResponse) => {
-                  return <DashboardCalendarRow key={match.localTeam._id} match={match}></DashboardCalendarRow>;
+                  return (
+                    <DashboardCalendarRow
+                      key={match.localTeam._id}
+                      match={match}
+                      onGoalsMatch={(goalsMatch) => {
+                        updatedGoalsMatch(goalsMatch)
+                      }}
+                    ></DashboardCalendarRow>
+                  );
                 });
                 return (
                   <>
@@ -49,7 +62,7 @@ const DashboardCalendarTable = ({ matchesOnMyTeam }: any): JSX.Element => {
                     {matchs}
                     <tr className="dashboard__matches-spacer"></tr>
                   </>
-                )
+                );
               })}
           </tbody>
         </table>
