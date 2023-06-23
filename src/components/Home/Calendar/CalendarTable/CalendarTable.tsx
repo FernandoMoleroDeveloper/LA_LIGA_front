@@ -6,11 +6,10 @@ const CalendarTable = (matchs: MatchTableProps): JSX.Element => {
   return (
     <table className="home-page__table">
       <tbody>
-        {
-          matchs.matchs.map((match: MatchResponse) => {
-            return <CalendarRow key={match.id} match={match}/>
-          })
-        }
+        <tr className="home-page__spacer"></tr>
+        {matchs.matchs.map((match: MatchResponse) => {
+          return <CalendarRow key={match.id} match={match} />;
+        })}
       </tbody>
     </table>
   );
