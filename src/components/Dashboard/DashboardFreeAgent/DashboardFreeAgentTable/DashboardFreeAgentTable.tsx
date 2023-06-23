@@ -1,32 +1,52 @@
-import useFetch from "../../../../hooks/useFetchGet";
+// import useFetch from "../../../../hooks/useFetchGet";
+// import { AuthContext } from "../../../../App";
 import DashboardFreeAgentRow from "../../DashboardFreeAgent/DashboardFreeAgentRow/DashboardFreeAgentRow";
 import "./DashboardFreeAgentTable.scss";
 import { useState } from "react";
 
 // Funcion que cambia el estado de addPlayers para mostrar la lista de jugadores a agregar.
 
-const DashboardFreeAgentTable = ({ user, myTeam }: any): JSX.Element => {
-  const [addPlayers, setAddPlayers] = useState(false);
-  const addPlayerButtonText = addPlayers ? "FIN DE EDICIÓN" : "AÑADIR JUGADORES";
-  const API_URL_FREE_AGENTS = `${process.env.REACT_APP_API_URL as string}/user/no-team`;
-  // Fetch free agent players
-  const [freeAgentPlayers]: any = useFetch(`${API_URL_FREE_AGENTS}`);
+const DashboardFreeAgentTable = ({ user, myTeam, freeAgentList, getFreeAgentList, getMyTeamPlayerList }: any): JSX.Element => {
+  // const authInfo = useContext(AuthContext);
+  const [addPlayersButtonState, setAddPlayersButtonState] = useState(false);
+  const addPlayerButtonText = addPlayersButtonState ? "FIN DE EDICIÓN" : "AÑADIR JUGADORES";
+  // const API_URL_FREE_AGENTS = `${process.env.REACT_APP_API_URL as string}/user/no-team`;
+  // const [freeAgentPlayers, setFreeAgentPlayers] = useState([]);
 
-  if (freeAgentPlayers) {
-    console.log("Free agent players list:");
-    console.log(freeAgentPlayers);
-  }
-
-  const toggleAddPlayers = (): void => {
-    setAddPlayers(!addPlayers);
+  const toggleAddPlayers = async (): Promise<void> => {
+  //  await fetchFreeAgents();
+    setAddPlayersButtonState(!addPlayersButtonState);
   };
+
+  // const fetchFreeAgents = async (): Promise<void> => {
+  //   console.log("Fetching free agents...");
+  //   await fetchMyProfile(); // Actualiza algunos estados en el dashboardPage para refrescar mi equipo
+  //   fetch(API_URL_FREE_AGENTS, {
+  //     headers: {
+  //       Authorization: `Bearer ${authInfo?.userToken as string}`,
+  //     },
+  //   })
+  //     .then(async (response) => {
+  //       if (response.status !== 200) {
+  //         alert("Ha ocurrido un error en la petición");
+  //       }
+  //       return await response.json();
+  //     })
+  //     .then((responseParsed) => {
+  //       setFreeAgentPlayers(responseParsed);
+  //     })
+  //     .catch((error) => {
+  //       alert("Ha ocurrido un error en la petición");
+  //       console.error(error);
+  //     });
+  // };
 
   return (
     <>
       <button className="dashboard__add-players" onClick={toggleAddPlayers}>
         {addPlayerButtonText}
       </button>
-      {!addPlayers ? null : (
+      {!addPlayersButtonState ? null : (
         <div className="dashboard__free-agent">
           <table>
             <thead>
@@ -41,15 +61,9 @@ const DashboardFreeAgentTable = ({ user, myTeam }: any): JSX.Element => {
             </thead>
             <tbody>
               <tr className="dashboard__team-spacer-x2"></tr>
-              {
-                freeAgentPlayers?.map((user: any) => {
-                  return (
-                    <>
-                      <DashboardFreeAgentRow user={user} myTeam={myTeam}></DashboardFreeAgentRow>
-                    </>
-                  )
-                })
-              }
+              {freeAgentList?.map((user: any) => {
+                return <DashboardFreeAgentRow key={user._id} user={user} myTeam={myTeam} getMyTeamPlayerList={getMyTeamPlayerList} getFreeAgentList={getFreeAgentList}></DashboardFreeAgentRow>;
+              })}
               <tr className="dashboard__team-spacer"></tr>
             </tbody>
           </table>

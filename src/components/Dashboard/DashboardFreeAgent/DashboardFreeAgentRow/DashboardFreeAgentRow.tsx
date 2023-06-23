@@ -2,12 +2,12 @@ import { AuthContext } from "../../../../App";
 import "./DashboardFreeAgentRow.scss";
 import { useContext } from "react";
 
-const DashboardFreeAgentRow = ({ user, myTeam }: any): JSX.Element => {
+const DashboardFreeAgentRow = ({ user, myTeam, getMyTeamPlayerList, getFreeAgentList }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
   const API_URL_PUT_PLAYER_INTO_TEAM = `${process.env.REACT_APP_API_URL as string}/user/${user?._id as string}`;
 
   const addToMyTeam = (user: any): any => {
-    const userToUpdate: any = { team: myTeam };
+    const userToUpdate: any = { team: myTeam._id };
 
     fetch(API_URL_PUT_PLAYER_INTO_TEAM, {
       method: "PUT",
@@ -22,6 +22,10 @@ const DashboardFreeAgentRow = ({ user, myTeam }: any): JSX.Element => {
           alert("Ha ocurrido un error en la respuesta al actualizar el usuario.");
         }
         return await response.json();
+      })
+      .then(() => {
+        getMyTeamPlayerList();
+        getFreeAgentList();
       })
       .catch((error) => {
         alert("Ha ocurrido un error en el codigo al actualizar el usuario.");
