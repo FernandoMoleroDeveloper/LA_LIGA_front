@@ -7,13 +7,14 @@ import Header from "../../components/Header/Header";
 import DashboardFreeAgentTable from "../../components/Dashboard/DashboardFreeAgent/DashboardFreeAgentTable/DashboardFreeAgentTable";
 import { AuthContext } from "../../App";
 import { ROL, UserResponse } from "../../models/User";
-import DashboardProfile from "../../components/Dashboard/DashboardProfile/DashboardProfile";
+import MyProfile from "../../components/Dashboard/DashboardProfile/MyProfile/MyProfile";
 import { TeamResponse } from "../../models/Team";
 import DashboardAdminButtons from "../../components/Dashboard/DashboardAdminButtons/DashboardAdminButtons";
 import { MatchResponse } from "../../models/Match";
 import DashboardTeamsAdminTable from "../../components/Dashboard/DashboardTeamsAdmin/DashboardTeamsAdminTable/DashboardTeamsAdminTable";
 import DashboardAdminLeague from "../../components/Dashboard/DashboardAdminLeague/DashboardAdminLeague";
 import DashboardAdminUsersTable from "../../components/Dashboard/DashboardAdminUsers/DashboardAdminUsersTable/DashboardAdminUsersTable";
+import MyTeam from "../../components/Dashboard/DashboardProfile/MyTeam";
 
 const DashboardPage = (): JSX.Element => {
   const authInfo = useContext(AuthContext);
@@ -77,6 +78,8 @@ const DashboardPage = (): JSX.Element => {
       })
       .then((responseParsed) => {
         setUser(responseParsed.user);
+        console.log("Este es el usuario traido:");
+        console.log(responseParsed.user.team);
         // setPlayersOnMyTeam(responseParsed.playersOnMyTeam);
         setMatchesOnMyTeam(responseParsed.matchsOnMyTeam);
       })
@@ -144,7 +147,6 @@ const DashboardPage = (): JSX.Element => {
       })
       .then((responseParsed) => {
         setUserAdmin(responseParsed.data);
-        console.log("lola", responseParsed.data);
       })
       .catch((error) => {
         alert("Ha ocurrido un error en la petición");
@@ -246,7 +248,14 @@ const DashboardPage = (): JSX.Element => {
     <div className="dashboard page">
       <Header roleColor={roleColor}></Header>
       <div className="dashboard__container">
-        <div className="dashboard__left-column">{authInfo?.userToken && user && <DashboardProfile user={user}></DashboardProfile>}</div>
+        <div className="dashboard__left-column">
+          {
+            authInfo?.userToken && user && <MyProfile user={user}></MyProfile>
+          }
+          {
+            authInfo?.userToken && user?.rol === "MANAGER" && <MyTeam user={user}></MyTeam>
+          }
+        </div>
         <div className="dashboard__right-column">{content}</div>
       </div>
       <Footer></Footer>

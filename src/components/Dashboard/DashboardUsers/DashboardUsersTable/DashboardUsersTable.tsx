@@ -26,7 +26,6 @@ const DashboardUsersTable = ({ fetchMyProfile, myTeamPlayerList, getMyTeamPlayer
           <tbody>
             <tr className="dashboard__team-spacer-x2"></tr>
             {myTeamPlayerList.map((user: any) => {
-              console.log(user);
               return <DashboardUserRow key={user?._id} user={user} fetchMyProfile={fetchMyProfile} getMyTeamPlayerList={getMyTeamPlayerList} getFreeAgentList={getFreeAgentList}></DashboardUserRow>;
             })}
             <tr className="dashboard__team-spacer"></tr>

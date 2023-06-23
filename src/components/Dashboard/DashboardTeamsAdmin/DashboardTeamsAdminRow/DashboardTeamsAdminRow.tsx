@@ -5,7 +5,6 @@ import "./DashboardTeamsAdminRow.scss";
 
 const DashboardTeamsAdminRow = ({ team }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
-  console.log(team);
   return (
     <>
       <tr className="dashboard__team-row">

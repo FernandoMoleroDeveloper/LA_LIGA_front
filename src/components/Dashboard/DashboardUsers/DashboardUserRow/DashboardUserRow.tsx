@@ -8,7 +8,7 @@ const DashboardUserRow = ({ user, getMyTeamPlayerList, getFreeAgentList }: any):
   const API_URL_REMOVE_PLAYER_FROM_TEAM = `${process.env.REACT_APP_API_URL as string}/user/${user?._id as string}`;
 
   const removeFromMyTeam = (user: any): any => {
-    const userToUpdate: any = { team: undefined };
+    const userToUpdate: any = { team: null };
 
     fetch(API_URL_REMOVE_PLAYER_FROM_TEAM, {
       method: "PUT",

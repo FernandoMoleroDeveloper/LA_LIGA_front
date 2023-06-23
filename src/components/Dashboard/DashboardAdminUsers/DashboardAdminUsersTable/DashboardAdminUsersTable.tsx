@@ -81,7 +81,6 @@ const DashboardAdminUsersTable = ({ userAdmin }: any): JSX.Element => {
           <tbody>
             <tr className="dashboard-admin__team-spacer-x2"></tr>
             {userAdmin?.map((user: any) => {
-              console.log("pepe", user);
               return <DashboardAdminUsersRow key={user?._id} user={user}></DashboardAdminUsersRow>;
             })}
             <tr className="dashboard-admin__team-spacer"></tr>

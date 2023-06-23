@@ -3,7 +3,7 @@ import ClasificationTeamRow from "../CalsificationTeamRow/ClasificationTeamRow";
 import { ClasificationTeamTableProps, TeamClasificationResponse } from "../../../../models/Team";
 
 const ClasificationTeamTable = (teams: ClasificationTeamTableProps): JSX.Element => {
-  console.log("Pepe", teams.teams);
+  // console.log("Pepe", teams.teams);
   return (
     <table className="home-page__table">
       <thead>

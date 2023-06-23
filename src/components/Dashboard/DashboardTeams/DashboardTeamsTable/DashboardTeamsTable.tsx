@@ -26,7 +26,6 @@ const DashboardTeamsTable = ({ playersOnMyTeam }: any): JSX.Element => {
           <tbody>
             <tr className="dashboard__team-spacer-x2"></tr>
             {playersOnMyTeam.map((user: any) => {
-              console.log(user);
               return <DashboardUserRow key={user?._id} user={user}></DashboardUserRow>;
             })}
             <tr className="dashboard__team-spacer"></tr>

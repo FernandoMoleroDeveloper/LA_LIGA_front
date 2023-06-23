@@ -2,8 +2,6 @@ import "./DashboardCalendarRow.scss";
 import teamLogo from "../../../../assets/team-logo.png";
 
 const DashboardCalendarRow = ({ match }: any): JSX.Element => {
-  console.log("Este es el partido");
-  console.log(match);
   return (
     <>
       <tr>
