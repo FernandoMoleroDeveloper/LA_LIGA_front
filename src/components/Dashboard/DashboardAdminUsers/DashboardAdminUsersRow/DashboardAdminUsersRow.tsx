@@ -15,7 +15,7 @@ const DashboardAdminUsersRow = ({ user }: any): JSX.Element => {
         <td>{user?.firstName}</td>
         <td>{user?.lastName}</td>
         <td>{user?.email}</td>
-        <td>{user?.team}</td>
+        <td>{user?.team?.name}</td>
         <td>{user?.rol}</td>
         {authInfo?.userRol === ROL.ADMIN ? (
           <td className="dashboard__team-delete-player-row">
