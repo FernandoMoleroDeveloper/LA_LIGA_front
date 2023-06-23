@@ -3,7 +3,6 @@ import { AuthContext } from "../../../App";
 import DashboardCalendarTable from "./DashboardCalendarTable/DashboardCalendarTable";
 import { GoalsMatch, MatchResponse } from "../../../models/Match";
 
-const actualDate = "1/8/23";
 const API_URL_GENERATE_LEAGUE = `${process.env.REACT_APP_API_URL as string}/match/generate-league`;
 const API_URL_ALLMATCHS = `${process.env.REACT_APP_API_URL as string}/match/matchall`;
 const API_URL_UPDATEMATCHS = `${process.env.REACT_APP_API_URL as string}/match`;
@@ -11,6 +10,7 @@ const API_URL_UPDATEMATCHS = `${process.env.REACT_APP_API_URL as string}/match`;
 const DashboardAdminLeague = (): JSX.Element => {
   const authInfo = useContext(AuthContext);
   const [leagues, setLeagues] = useState<MatchResponse[]>([]);
+  const [inputDate, setInputDate] = useState<string>("")
 
   useEffect(() => {
     fetchmMatchs();
@@ -44,7 +44,7 @@ const DashboardAdminLeague = (): JSX.Element => {
       body: JSON.stringify({
         goalsLocal: values.goalsLocal,
         goalsVisitor: values.goalsVisitor,
-        played: values.played
+        played: values.played,
       }),
     })
       .then(async (response) => {
@@ -70,7 +70,7 @@ const DashboardAdminLeague = (): JSX.Element => {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${authInfo?.userToken as string}`,
       },
-      body: JSON.stringify({ startDate: actualDate }),
+      body: JSON.stringify({ startDate: inputDate || "01/08/2023" }),
     })
       .then(async (response) => {
         if (response.status !== 200) {
@@ -94,6 +94,18 @@ const DashboardAdminLeague = (): JSX.Element => {
           matchesOnMyTeam={leagues}
           updatedGoalsMatch={(values) => {
             fetchUpdateMatchs(values);
+          }}
+        />
+      )}
+      {leagues?.length > 0 && (
+        <input
+          type="text"
+          value={inputDate}
+          min="1/1/2023"
+          max="31/12/2023"
+          placeholder="dd/mm/yyyy"
+          onChange={(event) => {
+            setInputDate(event.target.value)
           }}
         />
       )}

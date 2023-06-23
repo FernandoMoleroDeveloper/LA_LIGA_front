@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import "./DashboardCalendarRow.scss";
 import { GoalsMatch, MatchResponse } from "../../../../models/Match";
 
 interface DashboardCalendarRowProps {
@@ -30,13 +29,12 @@ const DashboardCalendarRow = ({ match, onGoalsMatch }: DashboardCalendarRowProps
                 onChange={(event) => {
                   setInputValue(event.target.value);
                 }}
-                pattern="[0-10]"
               />
               <img className="dashboard__matches-logo" src={match.visitorTeam.image} alt="Team logo" />
               <span className="dashboard__matches-name">{match.visitorTeam.initials}</span>
             </div>
             <button
-              className="dashboard__matches-blank"
+              className="dashboard__team-delete-player"
               onClick={() => {
                 setIsDisabled(false);
               }}
@@ -44,7 +42,7 @@ const DashboardCalendarRow = ({ match, onGoalsMatch }: DashboardCalendarRowProps
               Editar
             </button>
             {!isDisabled && (
-              <button
+              <button className="dashboard__team-delete-player"
                 onClick={() => {
                   if (inputValue !== "No disputado") {
                     onGoalsMatch({
@@ -58,7 +56,7 @@ const DashboardCalendarRow = ({ match, onGoalsMatch }: DashboardCalendarRowProps
                 // className="dashboard__matches-blank"
               >
                 Guardar
-              </button>
+              </button >
             )}
             <div className="dashboard__matches-blank"></div>
           </div>
