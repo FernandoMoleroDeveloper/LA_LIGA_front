@@ -1,21 +1,35 @@
+import { useRef, useState } from "react";
 import "./DashboardCalendarRow.scss";
 
 const DashboardCalendarRow = ({ match }: any): JSX.Element => {
-  console.log("Este es el partido");
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  const [inputValue, setInputValue] = useState<string>(match.played ? `${match.goalsLocal.length - match.goalsVisitor.length}` : "No disputado ")
+  const inputRef = useRef(null);
+
   console.log(match);
   return (
     <>
       <tr>
         <td className="dashboard__matches-row">
           <div className="dashboard__matches-details">
-            <div className="dashboard__matches-round">JORNADA {match.round} | {new Date(match.date).toLocaleString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" })}</div>
+            <div className="dashboard__matches-round">
+              JORNADA {match.round} | {new Date(match.date).toLocaleString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" })}
+            </div>
             <div className="dashboard__matches-teams">
               <span className="dashboard__matches-name">{match.localTeam.initials}</span>
               <img className="dashboard__matches-logo" src={match.localTeam.image} alt="Team logo" />
-              {(match.goalsLocal || match.goalsVisitor) && (<div className="dashboard__matches-results">{match.goalsLocal.length} - {match.goalsVisitor.length}</div>)}
+              <input ref={inputRef} disabled={isDisabled} value={inputValue} onChange={(event) => { setInputValue(event.target.value) }}/>
               <img className="dashboard__matches-logo" src={match.visitorTeam.image} alt="Team logo" />
               <span className="dashboard__matches-name">{match.visitorTeam.initials}</span>
             </div>
+            <button
+              className="dashboard__matches-blank"
+              onClick={() => {
+                setIsDisabled(false);
+              }}
+            >
+              Editar
+            </button>
             <div className="dashboard__matches-blank"></div>
           </div>
         </td>

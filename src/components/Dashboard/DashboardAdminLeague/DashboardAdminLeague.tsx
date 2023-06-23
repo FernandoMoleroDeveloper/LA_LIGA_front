@@ -17,7 +17,7 @@ const DashboardAdminLeague = (): JSX.Element => {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${authInfo?.userToken as string}`,
       },
-      body: JSON.stringify({ startDate: "22/05/22" }),
+      body: JSON.stringify({ startDate: "30/06/23" }),
     })
       .then(async (response) => {
         if (response.status !== 200) {
