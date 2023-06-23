@@ -7,39 +7,15 @@ import { useState } from "react";
 // Funcion que cambia el estado de addPlayers para mostrar la lista de jugadores a agregar.
 
 const DashboardFreeAgentTable = ({ user, myTeam, freeAgentList, getFreeAgentList, getMyTeamPlayerList }: any): JSX.Element => {
-  // const authInfo = useContext(AuthContext);
   const [addPlayersButtonState, setAddPlayersButtonState] = useState(false);
   const addPlayerButtonText = addPlayersButtonState ? "FIN DE EDICIÓN" : "AÑADIR JUGADORES";
-  // const API_URL_FREE_AGENTS = `${process.env.REACT_APP_API_URL as string}/user/no-team`;
-  // const [freeAgentPlayers, setFreeAgentPlayers] = useState([]);
+
+  console.log("El team que le esta llegando al manager es:");
+  console.log(myTeam);
 
   const toggleAddPlayers = async (): Promise<void> => {
-  //  await fetchFreeAgents();
     setAddPlayersButtonState(!addPlayersButtonState);
   };
-
-  // const fetchFreeAgents = async (): Promise<void> => {
-  //   console.log("Fetching free agents...");
-  //   await fetchMyProfile(); // Actualiza algunos estados en el dashboardPage para refrescar mi equipo
-  //   fetch(API_URL_FREE_AGENTS, {
-  //     headers: {
-  //       Authorization: `Bearer ${authInfo?.userToken as string}`,
-  //     },
-  //   })
-  //     .then(async (response) => {
-  //       if (response.status !== 200) {
-  //         alert("Ha ocurrido un error en la petición");
-  //       }
-  //       return await response.json();
-  //     })
-  //     .then((responseParsed) => {
-  //       setFreeAgentPlayers(responseParsed);
-  //     })
-  //     .catch((error) => {
-  //       alert("Ha ocurrido un error en la petición");
-  //       console.error(error);
-  //     });
-  // };
 
   return (
     <>
