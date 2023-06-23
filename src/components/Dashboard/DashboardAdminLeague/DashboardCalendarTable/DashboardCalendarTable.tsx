@@ -40,6 +40,11 @@ const DashboardCalendarTable = ({ matchesOnMyTeam }: any): JSX.Element => {
                 });
                 return (
                   <>
+                    <tr>
+                      <div className="dashboard__matches-round">
+                        JORNADA {key} | {new Date(filteredMatchs[key][0].date).toLocaleString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" })}
+                      </div>
+                    </tr>
                     <tr className="dashboard__matches-spacer"></tr>
                     {matchs}
                     <tr className="dashboard__matches-spacer"></tr>
