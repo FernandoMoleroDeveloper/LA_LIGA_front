@@ -1,5 +1,6 @@
 // import useFetch from "../../../../hooks/useFetchGet";
 // import { AuthContext } from "../../../../App";
+import { ROL } from "../../../../models/User";
 import DashboardFreeAgentRow from "../../DashboardFreeAgent/DashboardFreeAgentRow/DashboardFreeAgentRow";
 import "./DashboardFreeAgentTable.scss";
 import { useState } from "react";
@@ -38,7 +39,7 @@ const DashboardFreeAgentTable = ({ user, myTeam, freeAgentList, getFreeAgentList
             <tbody>
               <tr className="dashboard__team-spacer-x2"></tr>
               {freeAgentList?.map((user: any) => {
-                return <DashboardFreeAgentRow key={user._id} user={user} myTeam={myTeam} getMyTeamPlayerList={getMyTeamPlayerList} getFreeAgentList={getFreeAgentList}></DashboardFreeAgentRow>;
+                return user.rol !== ROL.MANAGER ? <DashboardFreeAgentRow key={user._id} user={user} myTeam={myTeam} getMyTeamPlayerList={getMyTeamPlayerList} getFreeAgentList={getFreeAgentList}></DashboardFreeAgentRow> : null;
               })}
               <tr className="dashboard__team-spacer"></tr>
             </tbody>

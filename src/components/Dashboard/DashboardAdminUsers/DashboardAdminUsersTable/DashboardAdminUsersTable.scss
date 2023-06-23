@@ -1,18 +1,41 @@
 @import "../../../../styles/utilities/variables";
 
-.dashoard-admin {
-  &__input {
-    border: none;
-    color: $font-color-dark;
-    font-size: 14px;
-    padding: 10px;
-  }
+.dashboard-admin {
 
   &__title {
     font-size: 20px;
-    font-weight: bold;
-    color: $font-color-scores;
+    font-weight: 500;
+    color: $misc-clear;
     margin-bottom: 20px;
+  }
+
+  &__new-player {
+    display: flex;
+    justify-content: space-evenly;
+    min-width: 100%;
+    background-color: $font-color-light;
+    border-radius: 10px;
+    margin: 10px 0px;
+  }
+
+  &__input {
+    border: none;
+    margin: 0px 5px;
+    color: $font-color-dark;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  &__role-selection {
+    border: none;
+    background-color: transparent;
+  }
+
+  &__form-submit {
+    padding: 0px 15px;
+    color: $misc-purple;
+    text-decoration: underline;
   }
 
   & table {
