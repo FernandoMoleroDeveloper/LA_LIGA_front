@@ -12,7 +12,7 @@ export interface MatchCreate {
 }
 
 export interface MatchResponse {
-  id: string;
+  _id: string;
   date: Date;
   localTeam: TeamResponse;
   visitorTeam: TeamResponse;
