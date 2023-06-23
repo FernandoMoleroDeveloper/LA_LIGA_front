@@ -1,6 +1,5 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
-// import { createContext } from "react";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
@@ -23,12 +22,12 @@ function App(): JSX.Element {
   const logIn = (userTokenFromApi: string, userRolFromApi: ROL): void => {
     setUserToken(userTokenFromApi);
     setUserRol(userRolFromApi);
-  }
+  };
 
   const logOut = (): void => {
     setUserToken(undefined);
     setUserRol(undefined);
-  }
+  };
   return (
     <div className="app">
       <AuthContext.Provider value={{ userRol, userToken, logIn, logOut }}>

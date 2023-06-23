@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import "./SignInPage.scss";
@@ -17,6 +18,7 @@ const SignInPage = (): JSX.Element => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate(); // Obtener la función navigate
 
   const handleRegister = async (event: React.FormEvent): Promise<void> => {
     event.preventDefault();
@@ -42,10 +44,17 @@ const SignInPage = (): JSX.Element => {
       headers: { "Content-Type": "application/json; charset=UTF-8" },
     })
       .then(async (response) => {
-        if (response.status !== 200) {
+        if (response.status !== 201) {
+          alert("Registro incorrecto");
+        } else {
           alert("Registro correcto");
         }
         return await response.json();
+      })
+      .then((response) => {
+        if (response.status === 201 || response.status === 204) {
+          navigate("/login");
+        }
       })
       .catch((error) => {
         console.error(error);
