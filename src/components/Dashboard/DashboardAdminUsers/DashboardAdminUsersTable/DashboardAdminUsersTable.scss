@@ -2,6 +2,44 @@
 
 .dashboard-admin {
 
+  &__player {
+    
+    &-data {
+      font-family: "Montserrat";
+      width: 100%;
+      border: none;
+      outline: none;
+
+      &-edit {
+        font-family: "Montserrat";
+      width: 100%;
+      border: 1px solid $font-color-dark;
+      outline: none;
+      }
+    }
+
+    // &-fullName {
+    //   color: $font-color-dark;
+    //   font-size: 17px;
+    //   font-weight: bold;
+    //   text-align: center;
+    //   border: none;
+    //   background-color: transparent;     
+    //   cursor: text;
+      
+    //   &:focus {
+    //     border: none;
+    //   }
+
+    //   &-edit {
+    //     font-size: 17px;
+    //     font-weight: bold;
+    //     text-align: center;
+    //     border: 1px solid $font-color-dark;
+    //     background-color: $font-color-light;
+    //   }
+  }
+
   &__title {
     font-size: 20px;
     font-weight: 500;
@@ -20,6 +58,7 @@
 
   &__input {
     border: none;
+    font-family: "Montserrat";
     margin: 0px 5px;
     color: $font-color-dark;
     font-size: 14px;
