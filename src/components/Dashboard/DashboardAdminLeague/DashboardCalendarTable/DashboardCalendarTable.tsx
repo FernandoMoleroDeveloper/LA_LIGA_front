@@ -40,6 +40,7 @@ const DashboardCalendarTable = ({ matchesOnMyTeam }: any): JSX.Element => {
                 });
                 return (
                   <>
+                    <tr className="dashboard__matches-spacer"></tr>
                     {matchs}
                     <tr className="dashboard__matches-spacer"></tr>
                   </>
