@@ -12,6 +12,7 @@ import { TeamResponse } from "../../models/Team";
 import DashboardAdminButtons from "../../components/Dashboard/DashboardAdminButtons/DashboardAdminButtons";
 import { MatchResponse } from "../../models/Match";
 import DashboardTeamsAdminTable from "../../components/Dashboard/DashboardTeamsAdmin/DashboardTeamsAdminTable/DashboardTeamsAdminTable";
+import DashboardAdminLeague from "../../components/Dashboard/DashboardAdminLeague/DashboardAdminLeague";
 import DashboardAdminUsersTable from "../../components/Dashboard/DashboardAdminUsers/DashboardAdminUsersTable/DashboardAdminUsersTable";
 
 const DashboardPage = (): JSX.Element => {
@@ -225,7 +226,7 @@ const DashboardPage = (): JSX.Element => {
           <DashboardAdminButtons setActiveTable={setActiveTable} />
           {activeTable === "users" && <DashboardAdminUsersTable userAdmin={userAdmin}></DashboardAdminUsersTable>}
           {activeTable === "teams" && <DashboardTeamsAdminTable teamsAdmin={teamsAdmin}></DashboardTeamsAdminTable>}
-          {activeTable === "calendar" && <DashboardCalendarTable />}
+          {activeTable === "calendar" && <DashboardAdminLeague />}
         </>
       );
       break;
