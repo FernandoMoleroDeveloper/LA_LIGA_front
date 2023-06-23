@@ -21,7 +21,6 @@ const DashboardAdminUsersTable = ({ userAdmin }: any): JSX.Element => {
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const submitForm = (event: React.FormEvent): void => {
-    //
     event.preventDefault();
 
     const newUser: NewUser = {
@@ -50,7 +49,9 @@ const DashboardAdminUsersTable = ({ userAdmin }: any): JSX.Element => {
     })
       .then(async (response) => {
         if (response.status !== 201) {
-          alert("Login incorrecto");
+          alert("Registro incorrecto");
+        } else {
+          alert("Registro correcto");
         }
         return await response.json();
       })
@@ -81,7 +82,6 @@ const DashboardAdminUsersTable = ({ userAdmin }: any): JSX.Element => {
           <tbody>
             <tr className="dashboard-admin__team-spacer-x2"></tr>
             {userAdmin?.map((user: any) => {
-              console.log("pepe", user);
               return <DashboardAdminUsersRow key={user?._id} user={user}></DashboardAdminUsersRow>;
             })}
             <tr className="dashboard-admin__team-spacer"></tr>

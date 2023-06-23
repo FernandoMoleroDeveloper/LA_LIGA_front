@@ -5,7 +5,6 @@ import { AuthContext } from "../../../../App";
 
 const DashboardAdminUsersRow = ({ user }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
-  console.log("pep", user?.firstName);
   return (
     <>
       <tr className="dashboard__team-row">
