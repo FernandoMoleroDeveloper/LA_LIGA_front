@@ -59,14 +59,12 @@ const DashboardAdminCreateTeam = (): JSX.Element => {
 
   return (
     <div className="dashboard__team">
-      <div className="admin-create-team__box">
+      <div className="dashboard-admin__team">
         {authInfo?.userRol === ROL.ADMIN ? (
-          <form onSubmit={submitForm} className="admin-create-team__form">
-            <label className="admin-create-team__form-label" htmlFor="name"></label>
-            <input ref={nameRef} className="admin-create-team__form-input" type="text" id="name" placeholder="Introduce nombre..." />
-            <label className="admin-create-team__form-label" htmlFor="initials"></label>
-            <input ref={initialsRef} className="admin-create-team__form-input" type="text" id="initials" placeholder="Introduce Alias..." />
-            <button className="admin-create-team__form-submit" type="submit" title="LogIn">
+          <form onSubmit={submitForm} className="dashboard-admin__team-row">
+            <input ref={nameRef} className="dashboard-admin__input" type="text" id="name" placeholder="Introduce nombre..." />
+            <input ref={initialsRef} className="dashboard-admin__input" type="text" id="initials" placeholder="Introduce Alias..." />
+            <button className="dashboard-admin__form-submit" type="submit" title="LogIn">
               AÑADIR
             </button>
           </form>

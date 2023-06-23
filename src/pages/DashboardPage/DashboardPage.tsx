@@ -19,21 +19,22 @@ import MyTeam from "../../components/Dashboard/DashboardProfile/MyTeam";
 const DashboardPage = (): JSX.Element => {
   const authInfo = useContext(AuthContext);
   const [roleColor, setRoleColor] = useState<string>("header");
-  const [user, setUser] = React.useState<UserResponse>();
+  const [user, setUser] = useState<UserResponse>();
   // const [playersOnMyTeam, setPlayersOnMyTeam] = useState<UserResponse[]>([]);
   const [myTeamPlayerList, setMyTeamPlayerList] = useState<UserResponse[]>([]);
   const [freeAgentList, setFreeAgentList] = useState<UserResponse[]>([]);
-  const [userAdmin, setUserAdmin] = React.useState<UserResponse>();
-
+  const [userAdmin, setUserAdmin] = useState<UserResponse>();
   const [matchesOnMyTeam, setMatchesOnMyTeam] = useState<MatchResponse[]>([]);
   const [teamsAdmin, setTeamsAdmin] = useState<TeamResponse[]>([]);
-  const [activeTable, setActiveTable] = React.useState<"users" | "teams" | "calendar">("users");
+  const [showPlayerTeam, setShowPlayerTeam] = useState<boolean>(false);
+  const [playersAdmin, setPlayersAdmin] = useState<UserResponse>();
+  const [activeTable, setActiveTable] = useState<"users" | "teams" | "calendar">("users");
   let content;
   const API_URL_PROFILE = `${process.env.REACT_APP_API_URL as string}/user/myuser`;
   const API_URL_TEAMS = `${process.env.REACT_APP_API_URL as string}/team`;
   const API_URL_FREE_AGENTS = `${process.env.REACT_APP_API_URL as string}/user/no-team`;
-  // const API_URL_ALL_USER_BY_ID_TEAM = `${process.env.REACT_APP_API_URL as string}/user/by-team/:id`;
   const API_URL_USERS = `${process.env.REACT_APP_API_URL as string}/user`;
+  const API_URL_PLAYERS = `${process.env.REACT_APP_API_URL as string}/user/by-team/:id`;
 
   useEffect(() => {
     fetchMyProfile();
@@ -45,7 +46,7 @@ const DashboardPage = (): JSX.Element => {
     if (authInfo.userRol === ROL.ADMIN) {
       fetchTeamsAdmin();
       fetchUsersAdmin();
-      // fetchManagerTeam();
+      fetchPlayersAdmin();
     }
 
     switch (authInfo.userRol) {
@@ -133,6 +134,7 @@ const DashboardPage = (): JSX.Element => {
       });
   };
 
+  // Obtiene los usuarios en el ADMIN
   const fetchUsersAdmin = (): void => {
     fetch(API_URL_USERS, {
       headers: {
@@ -155,6 +157,7 @@ const DashboardPage = (): JSX.Element => {
       });
   };
 
+  // Obtiene los equipos para ADMIN
   const fetchTeamsAdmin = (): void => {
     fetch(API_URL_TEAMS, {
       headers: {
@@ -175,30 +178,31 @@ const DashboardPage = (): JSX.Element => {
         console.error(error);
       });
   };
-  /*
-  const fetchManagerTeam = (): void => {
-    fetch(API_URL_ALL_USER_BY_ID_TEAM.replace(":id", team?._id), {
+
+  // Obtiene los jugadores de cada equipo por ID
+  const fetchPlayersAdmin = (): void => {
+    fetch(API_URL_PLAYERS, {
       headers: {
         Authorization: `Bearer ${authInfo?.userToken as string}`,
       },
     })
       .then(async (response) => {
-        if (response.status !== 200) {
-          alert("Ha ocurrido un error en la petición");
-          throw new Error("Error en la petición");
+        if (response.status !== 201) {
+          alert("Ha ocurrido un error en la petición al servidor.");
         }
         return await response.json();
       })
       .then((responseParsed) => {
-        const managers = responseParsed.map((data: any) => data.rol?.manager);
-        console.log(managers);
+        setPlayersAdmin(responseParsed.data);
+        console.log("eli", responseParsed.data);
       })
       .catch((error) => {
         alert("Ha ocurrido un error en la petición");
+
         console.error(error);
       });
   };
-*/
+
   switch (authInfo.userRol) {
     case ROL.PLAYER:
       content = (
@@ -227,7 +231,7 @@ const DashboardPage = (): JSX.Element => {
         <>
           <DashboardAdminButtons setActiveTable={setActiveTable} />
           {activeTable === "users" && <DashboardAdminUsersTable userAdmin={userAdmin}></DashboardAdminUsersTable>}
-          {activeTable === "teams" && <DashboardTeamsAdminTable teamsAdmin={teamsAdmin}></DashboardTeamsAdminTable>}
+          {activeTable === "teams" && <DashboardTeamsAdminTable teamsAdmin={teamsAdmin} showPlayerTeam={showPlayerTeam} setShowPlayerTeam={setShowPlayerTeam} playersAdmin={playersAdmin}></DashboardTeamsAdminTable>}
           {activeTable === "calendar" && <DashboardAdminLeague />}
         </>
       );
@@ -249,12 +253,8 @@ const DashboardPage = (): JSX.Element => {
       <Header roleColor={roleColor}></Header>
       <div className="dashboard__container">
         <div className="dashboard__left-column">
-          {
-            authInfo?.userToken && user && <MyProfile user={user}></MyProfile>
-          }
-          {
-            authInfo?.userToken && user?.rol === "MANAGER" && <MyTeam user={user}></MyTeam>
-          }
+          {authInfo?.userToken && user && <MyProfile user={user}></MyProfile>}
+          {authInfo?.userToken && user?.rol === "MANAGER" && <MyTeam user={user}></MyTeam>}
         </div>
         <div className="dashboard__right-column">{content}</div>
       </div>
