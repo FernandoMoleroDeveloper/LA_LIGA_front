@@ -46,14 +46,11 @@ const SignInPage = (): JSX.Element => {
       .then(async (response) => {
         if (response.status !== 201) {
           alert("Registro incorrecto");
+          throw new Error(`HTTP status ${response.status}`);
         } else {
           alert("Registro correcto");
-        }
-        return await response.json();
-      })
-      .then((response) => {
-        if (response.status === 201 || response.status === 204) {
           navigate("/login");
+          return await response.json();
         }
       })
       .catch((error) => {
