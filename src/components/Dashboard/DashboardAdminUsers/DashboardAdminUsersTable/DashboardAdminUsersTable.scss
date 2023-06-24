@@ -1,9 +1,7 @@
 @import "../../../../styles/utilities/variables";
 
 .dashboard-admin {
-
   &__player {
-    
     &-data {
       font-family: "Montserrat";
       width: 100%;
@@ -12,10 +10,18 @@
 
       &-edit {
         font-family: "Montserrat";
-      width: 100%;
-      border: 1px solid $font-color-dark;
-      outline: none;
+        width: 100%;
+        border: 1px solid $font-color-dark;
+        outline: none;
       }
+    }
+
+    &-actions {
+      color: $font-color-alert;
+    }
+
+    &-save {
+      color: $misc-purple;
     }
 
     // &-fullName {
@@ -24,9 +30,9 @@
     //   font-weight: bold;
     //   text-align: center;
     //   border: none;
-    //   background-color: transparent;     
+    //   background-color: transparent;
     //   cursor: text;
-      
+
     //   &:focus {
     //     border: none;
     //   }

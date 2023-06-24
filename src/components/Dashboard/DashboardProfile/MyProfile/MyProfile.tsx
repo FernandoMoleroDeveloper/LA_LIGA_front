@@ -74,7 +74,7 @@ const MyProfile = ({ user }: FullUser): JSX.Element => {
       <p>
         <input
           className={toggleEdit ? "dashboard__profile-fullName-edit" : "dashboard__profile-fullName"}
-          value={fullName}
+          defaultValue={fullName}
           onChange={(event) => {
             setFullName(event.target.value);
           }}

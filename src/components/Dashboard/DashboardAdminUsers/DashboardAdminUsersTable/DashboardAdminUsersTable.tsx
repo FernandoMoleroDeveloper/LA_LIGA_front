@@ -111,8 +111,8 @@ const DashboardAdminUsersTable = ({ usersAdminList, getUsersAdminList }: any): J
             <input ref={emailRef} className="dashboard-admin__input" type="email" placeholder="Introduce email..." />
             <input ref={passwordRef} className="dashboard-admin__input" type="password" placeholder="Introduce password..." />
             <select ref={rolRef as any} className="dashboard-admin__role-selection">
-              <option value={ROL.PLAYER}>Jugador</option>
-              <option value={ROL.MANAGER}>Manager</option>
+              <option value={ROL.PLAYER}>PLAYER</option>
+              <option value={ROL.MANAGER}>MANAGER</option>
             </select>
             <button className="dashboard-admin__form-submit" type="submit" title="LogIn">
               AÑADIR
