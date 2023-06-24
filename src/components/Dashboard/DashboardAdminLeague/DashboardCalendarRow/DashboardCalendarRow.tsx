@@ -58,7 +58,6 @@ const DashboardCalendarRow = ({ match, onGoalsMatch }: DashboardCalendarRowProps
                 Guardar
               </button >
             )}
-            <div className="dashboard__matches-blank"></div>
           </div>
         </td>
       </tr>

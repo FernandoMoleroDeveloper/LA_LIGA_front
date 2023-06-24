@@ -1,24 +1,23 @@
+import { useState } from "react";
 import DashboardAdminCreateTeam from "../../DashboardAdminCreateTeam/DashboardAdminCreateTeam";
+import DashboardAdminPlayersTable from "../../DashboardAdminPlayers/DashboardAdminPlayersTable/DashboardAdminPlayersTable";
 import DashboardTeamsAdminRow from "../DashboardTeamsAdminRow/DashboardTeamsAdminRow";
 import "./DashboardTeamsAdminTable.scss";
-// import React, { useContext } from "react";
 
-// export interface MockUserInterface {
-//   name: string;
-//   surname: string;
-//   email: string;
-//   role: string;
-// }
+interface DashboardTeamsTableProps {
+  playersAdmin: any;
+  teamsAdmin: any;
+  setShowPlayerTeam: React.Dispatch<React.SetStateAction<boolean>>;
+  showPlayerTeam: boolean;
+}
 
-// const mockUser: UserResponse = {
-//   _id: "xxx",
-//   firstName: "Nombre",
-//   lastName: "Apellidos",
-//   email: "email@email.com",
-//   rol: ROL.PLAYER,
-// };
+const DashboardTeamsTable = ({ playersAdmin, teamsAdmin, setShowPlayerTeam, showPlayerTeam }: DashboardTeamsTableProps): JSX.Element => {
+  const [selectedTeamId, setSelectedTeamId] = useState("");
 
-const DashboardTeamsTable = ({ teamsAdmin }: any): JSX.Element => {
+  const handleMostrarJugadores = (idEquipo: string): void => {
+    setSelectedTeamId(idEquipo);
+    setShowPlayerTeam(true);
+  };
   return (
     <>
       <div className="dashboard__team">
@@ -39,8 +38,8 @@ const DashboardTeamsTable = ({ teamsAdmin }: any): JSX.Element => {
           <tbody>
             <tr className="dashboard__team-spacer-x2"></tr>
             {teamsAdmin.map((team: any) => {
-              console.log(team);
-              return <DashboardTeamsAdminRow key={team?._id} team={team}></DashboardTeamsAdminRow>;
+              console.log("team", team);
+              return <DashboardTeamsAdminRow key={team?.team?._id} team={team?.team} manager={team?.manager} showPlayerTeam={showPlayerTeam} setShowPlayerTeam={setShowPlayerTeam} handleMostrarJugadores={handleMostrarJugadores}></DashboardTeamsAdminRow>;
             })}
             <tr className="dashboard__team-spacer"></tr>
           </tbody>
@@ -50,6 +49,7 @@ const DashboardTeamsTable = ({ teamsAdmin }: any): JSX.Element => {
       <div>
         <DashboardAdminCreateTeam></DashboardAdminCreateTeam>
       </div>
+      {showPlayerTeam && <DashboardAdminPlayersTable playersAdmin={playersAdmin} teamId={selectedTeamId}></DashboardAdminPlayersTable>}
     </>
   );
 };
