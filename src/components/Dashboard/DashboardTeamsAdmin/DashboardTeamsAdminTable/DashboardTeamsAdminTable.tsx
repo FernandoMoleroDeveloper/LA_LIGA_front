@@ -40,7 +40,7 @@ const DashboardTeamsTable = ({ teamsAdmin }: any): JSX.Element => {
             <tr className="dashboard__team-spacer-x2"></tr>
             {teamsAdmin.map((team: any) => {
               console.log(team);
-              return <DashboardTeamsAdminRow key={team?._id} team={team}></DashboardTeamsAdminRow>;
+              return <DashboardTeamsAdminRow key={team?._id} team={team?.team} manager={team?.manager}></DashboardTeamsAdminRow>;
             })}
             <tr className="dashboard__team-spacer"></tr>
           </tbody>
