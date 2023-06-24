@@ -99,7 +99,7 @@ const DashboardAdminUsersRow = ({ user, getUsersAdminList, teamsAdmin, fetchTeam
           <input ref={emailRef} className={!toggleEdit ? "dashboard-admin__player-data" : "dashboard-admin__player-data-edit"} defaultValue={user?.email} readOnly={!toggleEdit} type="text" />
         </td>
         <td>
-          {toggleEdit ? (
+          {(toggleEdit && user.rol !== ROL.ADMIN) ? (
             <select ref={teamRef as any} className={!toggleEdit ? "dashboard-admin__player-rol" : "dashboard-admin__player-rol-edit"} defaultValue={userTeam} disabled={!toggleEdit}>
               {teamsAdmin?.map((team: any) => {
                 console.log(team);
