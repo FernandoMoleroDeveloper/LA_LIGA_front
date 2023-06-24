@@ -6,7 +6,7 @@ import React, { useContext, useRef, useEffect } from "react";
 
 const API_URL_NEW_USER = `${process.env.REACT_APP_API_URL as string}/user`;
 
-const DashboardAdminUsersTable = ({ usersAdminList, getUsersAdminList }: any): JSX.Element => {
+const DashboardAdminUsersTable = ({ usersAdminList, getUsersAdminList, teamsAdmin, fetchTeamsAdmin }: any): JSX.Element => {
   const authInfo = useContext(AuthContext);
   const firstnameRef = useRef<HTMLInputElement>(null);
   const lastnameRef = useRef<HTMLInputElement>(null);
@@ -95,8 +95,9 @@ const DashboardAdminUsersTable = ({ usersAdminList, getUsersAdminList }: any): J
           </thead>
           <tbody>
             <tr className="dashboard-admin__team-spacer-x2"></tr>
-            {usersAdminList?.map((user: any) => {
-              return <DashboardAdminUsersRow key={user?._id} user={user} getUsersAdminList={getUsersAdminList}></DashboardAdminUsersRow>;
+            {
+            usersAdminList?.map((user: any) => {
+              return <DashboardAdminUsersRow key={user?._id} user={user} getUsersAdminList={getUsersAdminList} teamsAdmin={teamsAdmin} fetchTeamsAdmin={fetchTeamsAdmin}></DashboardAdminUsersRow>;
             })}
             <tr className="dashboard-admin__team-spacer"></tr>
           </tbody>
