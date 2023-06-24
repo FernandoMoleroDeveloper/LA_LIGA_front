@@ -24,6 +24,26 @@
       color: $misc-purple;
     }
 
+    & select {
+      & option {
+        font-family: "Montserrat";
+      }
+      
+    }
+
+    &-rol {
+      background-color: transparent;
+      font-family: "Montserrat";
+      border: none;
+      appearance: none;
+
+      &-edit {
+        background-color: transparent;
+        font-family: "Montserrat";
+        border: none;
+      }
+    }
+
     // &-fullName {
     //   color: $font-color-dark;
     //   font-size: 17px;
