@@ -33,7 +33,7 @@ const DashboardPage = (): JSX.Element => {
   const API_URL_PROFILE = `${process.env.REACT_APP_API_URL as string}/user/myuser`;
   const API_URL_TEAMS = `${process.env.REACT_APP_API_URL as string}/team`;
   const API_URL_FREE_AGENTS = `${process.env.REACT_APP_API_URL as string}/user/no-team`;
-  const API_URL_USERS = `${process.env.REACT_APP_API_URL as string}/user`;
+  const API_URL_USERS = `${process.env.REACT_APP_API_URL as string}/user?page=1&limit=80`;
   const API_URL_PLAYERS = `${process.env.REACT_APP_API_URL as string}/user/by-team/:id`;
 
   useEffect(() => {
