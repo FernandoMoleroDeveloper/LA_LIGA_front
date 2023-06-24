@@ -230,7 +230,7 @@ const DashboardPage = (): JSX.Element => {
       content = (
         <>
           <DashboardAdminButtons setActiveTable={setActiveTable}></DashboardAdminButtons>
-          {activeTable === "users" && <DashboardAdminUsersTable usersAdminList={usersAdminList} getUsersAdminList={getUsersAdminList}></DashboardAdminUsersTable>}
+          {activeTable === "users" && <DashboardAdminUsersTable usersAdminList={usersAdminList} getUsersAdminList={getUsersAdminList} fetchTeamsAdmin={fetchTeamsAdmin}></DashboardAdminUsersTable>}
           {activeTable === "teams" && <DashboardTeamsAdminTable teamsAdmin={teamsAdmin} showPlayerTeam={showPlayerTeam} setShowPlayerTeam={setShowPlayerTeam} playersAdmin={playersAdmin}></DashboardTeamsAdminTable>}
           {activeTable === "calendar" && <DashboardAdminLeague />}
         </>

@@ -28,6 +28,16 @@ export interface UserResponse {
   image?: string;
 }
 
+export interface UserUpdate {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  rol?: ROL;
+  team?: string;
+  image?: string;
+}
+
 export interface FullUser {
   user: UserResponse;
 }
