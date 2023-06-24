@@ -105,7 +105,7 @@ const DashboardAdminUsersTable = ({ usersAdminList, getUsersAdminList }: any): J
       <p className="dashboard-admin__title">NUEVO USUARIO</p>
       <div className="dashboard-admin__team">
         {authInfo?.userRol === ROL.ADMIN ? (
-          <form onSubmit={submitForm} className="dashboard-admin__new-player">
+          <form onSubmit={submitForm} className="dashboard-admin__team-row">
             <input ref={firstnameRef} className="dashboard-admin__input" type="text" placeholder="Introduce nombre..." />
             <input ref={lastnameRef} className="dashboard-admin__input" type="text" placeholder="Introduce apellidos..." />
             <input ref={emailRef} className="dashboard-admin__input" type="email" placeholder="Introduce email..." />
