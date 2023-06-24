@@ -1,5 +1,4 @@
 import { TeamResponse } from "./Team";
-import { UserResponse } from "./User";
 
 export interface MatchCreate {
   date: Date;
@@ -12,12 +11,12 @@ export interface MatchCreate {
 }
 
 export interface MatchResponse {
-  id: string;
+  _id: string;
   date: Date;
   localTeam: TeamResponse;
   visitorTeam: TeamResponse;
-  goalsLocal?: UserResponse[];
-  goalsVisitor?: UserResponse[];
+  goalsLocal?: string[];
+  goalsVisitor?: string[];
   played: boolean;
   round: number;
 }
@@ -28,4 +27,11 @@ export interface MatchTableProps {
 
 export interface CalendarRowProps {
   match: MatchResponse;
+}
+
+export interface GoalsMatch {
+  id: string;
+  goalsLocal: string[];
+  goalsVisitor: string[];
+  played: boolean;
 }

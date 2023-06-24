@@ -1,11 +1,49 @@
 @import "../../../../styles/utilities/variables";
 
 .dashboard-admin {
+
+  &__player {
+    
+    &-data {
+      font-family: "Montserrat";
+      width: 100%;
+      border: none;
+      outline: none;
+
+      &-edit {
+        font-family: "Montserrat";
+      width: 100%;
+      border: 1px solid $font-color-dark;
+      outline: none;
+      }
+    }
+
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 500;
+    color: $misc-clear;
+    margin-bottom: 20px;
+  }
+
+  &__new-player {
+    display: flex;
+    justify-content: space-evenly;
+    min-width: 100%;
+    background-color: $font-color-light;
+    border-radius: 10px;
+    margin: 10px 0px;
+  }
+
   &__input {
     border: none;
+    font-family: "Montserrat";
+    margin: 0px 5px;
     color: $font-color-dark;
     font-size: 14px;
     padding: 10px;
+    width: 100%;
   }
 
   &__form-submit {
@@ -18,6 +56,11 @@
     font-weight: bold;
     color: $font-color-scores;
     margin-bottom: 20px;
+  }
+  
+  &__role-selection {
+    border: none;
+    background-color: transparent;
   }
 
   &__team {

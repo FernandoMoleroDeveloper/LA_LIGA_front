@@ -3,7 +3,7 @@
 .admin-btn {
   margin-bottom: 50px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   &__areas {
     background-color: $misc-clear;
     height: 44px;
@@ -23,4 +23,7 @@
     font-size: 14px;
     text-decoration: underline;
   }
+}
+.admin-btn__areas.active {
+  background-color: $misc-accent;
 }

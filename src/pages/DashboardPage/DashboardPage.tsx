@@ -1,20 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
 import "./DashboardPage.scss";
-import DashboardCalendarTable from "../../components/Dashboard/DashboardCalendar/DashboardCalendarTable/DashboardCalendarTable";
-import DashboardUsersTable from "../../components/Dashboard/DashboardUsers/DashboardUsersTable/DashboardUsersTable";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import React, { useContext, useEffect, useState } from "react";
+import DashboardCalendarTable from "../../components/Dashboard/DashboardCalendar/DashboardCalendarTable/DashboardCalendarTable";
+import DashboardUsersTable from "../../components/Dashboard/DashboardUsers/DashboardUsersTable/DashboardUsersTable";
 import DashboardFreeAgentTable from "../../components/Dashboard/DashboardFreeAgent/DashboardFreeAgentTable/DashboardFreeAgentTable";
-import { AuthContext } from "../../App";
-import { ROL, UserResponse } from "../../models/User";
 import MyProfile from "../../components/Dashboard/DashboardProfile/MyProfile/MyProfile";
-import { TeamResponse } from "../../models/Team";
 import DashboardAdminButtons from "../../components/Dashboard/DashboardAdminButtons/DashboardAdminButtons";
-import { MatchResponse } from "../../models/Match";
 import DashboardTeamsAdminTable from "../../components/Dashboard/DashboardTeamsAdmin/DashboardTeamsAdminTable/DashboardTeamsAdminTable";
 import DashboardAdminLeague from "../../components/Dashboard/DashboardAdminLeague/DashboardAdminLeague";
 import DashboardAdminUsersTable from "../../components/Dashboard/DashboardAdminUsers/DashboardAdminUsersTable/DashboardAdminUsersTable";
 import MyTeam from "../../components/Dashboard/DashboardProfile/MyTeam";
+import { AuthContext } from "../../App";
+import { MatchResponse } from "../../models/Match";
+import { TeamResponse } from "../../models/Team";
+import { ROL, UserResponse } from "../../models/User";
 
 const DashboardPage = (): JSX.Element => {
   const authInfo = useContext(AuthContext);
@@ -23,6 +23,7 @@ const DashboardPage = (): JSX.Element => {
   // const [playersOnMyTeam, setPlayersOnMyTeam] = useState<UserResponse[]>([]);
   const [myTeamPlayerList, setMyTeamPlayerList] = useState<UserResponse[]>([]);
   const [freeAgentList, setFreeAgentList] = useState<UserResponse[]>([]);
+
   const [userAdmin, setUserAdmin] = useState<UserResponse>();
   const [matchesOnMyTeam, setMatchesOnMyTeam] = useState<MatchResponse[]>([]);
   const [teamsAdmin, setTeamsAdmin] = useState<TeamResponse[]>([]);
@@ -36,6 +37,7 @@ const DashboardPage = (): JSX.Element => {
   const API_URL_USERS = `${process.env.REACT_APP_API_URL as string}/user?page=1&limit=80`;
   const API_URL_PLAYERS = `${process.env.REACT_APP_API_URL as string}/user/by-team/:id`;
 
+
   useEffect(() => {
     fetchMyProfile();
     getMyTeamPlayerList();
@@ -47,6 +49,7 @@ const DashboardPage = (): JSX.Element => {
       fetchTeamsAdmin();
       fetchUsersAdmin();
       fetchPlayersAdmin();
+
     }
 
     switch (authInfo.userRol) {
@@ -127,6 +130,8 @@ const DashboardPage = (): JSX.Element => {
       })
       .then((responseParsed) => {
         setFreeAgentList(responseParsed);
+        console.log("Acabo de pedir los jugadores libres desde dashboardPage, esto ha llegado:");
+        console.log(responseParsed);
       })
       .catch((error) => {
         alert("Ha ocurrido un error en la petición getFreeAgentList");
@@ -137,6 +142,7 @@ const DashboardPage = (): JSX.Element => {
   // Obtiene los usuarios en el ADMIN
   const fetchUsersAdmin = (): void => {
     fetch(API_URL_USERS, {
+
       headers: {
         Authorization: `Bearer ${authInfo?.userToken as string}`,
       },
@@ -148,7 +154,7 @@ const DashboardPage = (): JSX.Element => {
         return await response.json();
       })
       .then((responseParsed) => {
-        setUserAdmin(responseParsed.data);
+        setUsersAdminList(responseParsed.data);
       })
       .catch((error) => {
         alert("Ha ocurrido un error en la petición");
@@ -178,6 +184,7 @@ const DashboardPage = (): JSX.Element => {
         console.error(error);
       });
   };
+
 
   // Obtiene los jugadores de cada equipo por ID
   const fetchPlayersAdmin = (): void => {

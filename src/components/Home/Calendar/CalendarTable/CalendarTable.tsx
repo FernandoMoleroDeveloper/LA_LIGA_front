@@ -8,7 +8,7 @@ const CalendarTable = (matchs: MatchTableProps): JSX.Element => {
       <tbody>
         <tr className="home-page__spacer"></tr>
         {matchs.matchs.map((match: MatchResponse) => {
-          return <CalendarRow key={match.id} match={match} />;
+          return <CalendarRow key={match._id} match={match} />;
         })}
       </tbody>
     </table>

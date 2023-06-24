@@ -35,7 +35,7 @@ const MyProfile = ({ user }: FullUser): JSX.Element => {
     const newName = name;
     const newLastName = lastName2 ? lastName1 + " " + lastName2 : lastName1;
 
-    const userToUpdate: any = { firstName: newName, lastName: newLastName, team: user?.team };
+    const userToUpdate: any = { firstName: newName, lastName: newLastName, team: user?.team, rol: authInfo.userRol };
     console.log("El nuevo nombre:")
     console.log(newName);
     console.log("Los nuevos apellidos:")
