@@ -26,6 +26,7 @@ const DashboardPage = (): JSX.Element => {
   const [usersAdminList, setUsersAdminList] = React.useState<UserResponse>();
   const [matchesOnMyTeam, setMatchesOnMyTeam] = useState<MatchResponse[]>([]);
   const [teamsAdmin, setTeamsAdmin] = useState<TeamResponse[]>([]);
+  const [showPlayerTeam, setShowPlayerTeam] = useState<boolean>(false);
   const [activeTable, setActiveTable] = React.useState<"users" | "teams" | "calendar">("users");
   const API_URL_PROFILE = `${process.env.REACT_APP_API_URL as string}/user/myuser`;
   const API_URL_TEAMS = `${process.env.REACT_APP_API_URL as string}/team`;
@@ -43,7 +44,6 @@ const DashboardPage = (): JSX.Element => {
     if (authInfo.userRol === ROL.ADMIN) {
       fetchTeamsAdmin();
       getUsersAdminList();
-      // fetchManagerTeam();
     }
 
     switch (authInfo.userRol) {
@@ -204,9 +204,7 @@ const DashboardPage = (): JSX.Element => {
         <>
           <DashboardAdminButtons setActiveTable={setActiveTable}></DashboardAdminButtons>
           {activeTable === "users" && <DashboardAdminUsersTable usersAdminList={usersAdminList} getUsersAdminList={getUsersAdminList} teamsAdmin={teamsAdmin} fetchTeamsAdmin={fetchTeamsAdmin}></DashboardAdminUsersTable>}
-          {activeTable === "teams" && <DashboardTeamsAdminTable teamsAdmin={teamsAdmin} playersAdmin={undefined} setShowPlayerTeam={function (value: React.SetStateAction<boolean>): void {
-            throw new Error("Function not implemented.");
-          } } showPlayerTeam={false}></DashboardTeamsAdminTable>}
+          {activeTable === "teams" && <DashboardTeamsAdminTable showPlayerTeam={showPlayerTeam} setShowPlayerTeam={setShowPlayerTeam} teamsAdmin={teamsAdmin}></DashboardTeamsAdminTable>}
           {activeTable === "calendar" && <DashboardAdminLeague />}
         </>
       );
@@ -228,12 +226,8 @@ const DashboardPage = (): JSX.Element => {
       <Header roleColor={roleColor}></Header>
       <div className="dashboard__container">
         <div className="dashboard__left-column">
-          {
-            authInfo?.userToken && user && <MyProfile user={user}></MyProfile>
-          }
-          {
-            authInfo?.userToken && user?.rol === "MANAGER" && <MyTeam user={user}></MyTeam>
-          }
+          {authInfo?.userToken && user && <MyProfile user={user}></MyProfile>}
+          {authInfo?.userToken && user?.rol === "MANAGER" && <MyTeam user={user}></MyTeam>}
         </div>
         <div className="dashboard__right-column">{content}</div>
       </div>
